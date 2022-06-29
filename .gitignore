@@ -1,0 +1,6 @@
+.alpackages
+.vscode
+src
+*.o
+*.dll
+*.exe
