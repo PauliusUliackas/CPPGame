@@ -45,7 +45,9 @@ void TokenHandler::update()
         {
             if(t == tokens.at(i))
             {
+                Token* token = tokens[i];
                 tokens.erase(tokens.begin()+i);
+                delete token;
             }
         }
     }
@@ -54,14 +56,25 @@ void TokenHandler::update()
     for(Token* t: tokens)
     {
         t->update();
+        if(Character* c = dynamic_cast<Character*>(t))
+        {
+            move(c);
+        }
+        if(Skill* skill = dynamic_cast<Skill*>(t))
+        {
+            if(skill->isOver()) this->removeToken(skill);
+        }
     }
+
 };
 
-void TokenHandler::move(Character* c, sf::Vector2f velocity)
+void TokenHandler::move(Character* c)
 {
 
     std::vector<Token*> allCollisions;
     std::vector<Token*> collisions;
+
+    sf::Vector2f velocity = c->speed();
 
     c->moveBy(velocity.x * DeltaTime::get(), 0);
 
@@ -69,13 +82,15 @@ void TokenHandler::move(Character* c, sf::Vector2f velocity)
 
     for(Token* t: collisions)
     {
-        if(velocity.x > 0) // moving right
-        {
-            c->leftOf(t);
-        }
-        if(velocity.x < 0)
-        {
-            c->rightOf(t);
+        if(t->isSolid()){
+            if(velocity.x > 0)
+            {
+                c->leftOf(t);
+            }
+            if(velocity.x < 0)
+            {
+                c->rightOf(t);
+            }
         }
         allCollisions.push_back(t);
     }
@@ -88,13 +103,15 @@ void TokenHandler::move(Character* c, sf::Vector2f velocity)
 
     for(Token* t: collisions)
     {
-        if(velocity.y > 0)
-        {
-            c->topOf(t);
-        }
-        if(velocity.y < 0)
-        {
-            c->bottomOf(t);
+        if(t->isSolid()){
+            if(velocity.y > 0)
+            {
+                c->topOf(t);
+            }
+            if(velocity.y < 0)
+            {
+                c->bottomOf(t);
+            }
         }
         allCollisions.push_back(t);
     }

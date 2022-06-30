@@ -43,7 +43,7 @@ bool Token::isSolid()
 
 bool Token::collides(Token* other)
 {
-    return (solid && other->isSolid()) && hitbox.intersects(other->hitbox);
+    return hitbox.intersects(other->hitbox);
 };
 
 void Token::setX(double x)
@@ -74,4 +74,9 @@ void Token::topOf(Token* t)
 void Token::bottomOf(Token* t)
 {
     hitbox.setY(t->hitbox.getY() + t->hitbox.getHeight());
+};
+
+Hitbox Token::getHB()
+{
+    return hitbox;
 };

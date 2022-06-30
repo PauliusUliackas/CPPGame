@@ -45,18 +45,18 @@ void Hitbox::moveBy(double x, double y)
     hitbox.move(x, y);
 };
 
-void Hitbox::render(sf::RenderWindow* g)
+void Hitbox::render(sf::RenderWindow* g, sf::Color c)
 {
-    hitbox.setFillColor(sf::Color::Green);
+    hitbox.setFillColor(c);
     g->draw(hitbox);
 };
 
 void Hitbox::setX(double x)
 {
-    hitbox.setPosition(x,y);
+    hitbox.setPosition(x,getY());
 };
 
 void Hitbox::setY(double y)
 {
-    hitbox.setPosition(x,y);
+    hitbox.setPosition(getX(),y);
 };

@@ -2,10 +2,11 @@
 
 #include "Token.hpp"
 #include <vector>
+#include <iostream>
 
 class Character : public Token
 {
-private:
+protected:
     sf::Vector2f velocity;
     std::vector<Token*> collisions;
 
@@ -15,6 +16,7 @@ public:
     virtual void update();
     virtual void render(sf::RenderWindow*);
 
+    sf::Vector2f speed();
     void setCollisions(std::vector<Token*>);
     std::vector<Token*>& getCollisions(); 
 };

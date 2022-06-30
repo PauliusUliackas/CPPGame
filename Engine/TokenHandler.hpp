@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Entities/Character.hpp"
+#include "../Skills/Skill.hpp"
 #include <vector>
 #include<algorithm>
 #include<iterator>
@@ -19,8 +20,9 @@ public:
     void render(sf::RenderWindow*);
     static void addToken(Token*);
     static void removeToken(Token*);
-    static void move(Character*, sf::Vector2f);
-
+    static void move(Character*);
+    static std::vector<Token*> getRubbish();
+    
 private:
     static std::vector<Token*> getCollisions(Character*);
 

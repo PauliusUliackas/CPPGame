@@ -2,6 +2,7 @@
 
 #include "../DataStructures/DeltaTime.hpp"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 class Hitbox
 {
@@ -13,7 +14,7 @@ class Hitbox
         Hitbox(double, double, double, double);
         ~Hitbox();
 
-        void render(sf::RenderWindow*);
+        void render(sf::RenderWindow*, sf::Color = sf::Color::Green);
         
         double getX();
         double getY();

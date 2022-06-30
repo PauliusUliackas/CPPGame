@@ -11,11 +11,11 @@ class Token
     
     public:
         Token(double, double, double, double);
-        ~Token();
+        virtual ~Token();
         virtual void render(sf::RenderWindow*);
         virtual void update();
         void moveBy(double, double);
-        bool operator==(const Token*);
+        virtual bool operator==(const Token*);
         bool operator<(Token&);
         bool isSolid();
         bool collides(Token*);
@@ -25,5 +25,6 @@ class Token
         void rightOf(Token*);
         void topOf(Token*);
         void bottomOf(Token*);
+        Hitbox getHB();
 
 };

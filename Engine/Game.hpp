@@ -1,6 +1,8 @@
 #pragma once
 
 #include "TokenHandler.hpp"
+#include "../Entities/Player.hpp"
+#include "../Map/Map.hpp"
 
 class Game
 {
@@ -14,9 +16,12 @@ class Game
             GAME
         };
         STATE currState;
-        Token test;
-        Token test2;
-
+        Player player;
+        Character test;
+        Token testB;
+        Map map;
+        bool mousePressed;
+        
     public:
         Game();
         ~Game();
