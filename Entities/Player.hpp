@@ -24,4 +24,8 @@ public:
     Hitbox mousePosition();
     Skill* getSelected();
     void useSkill();
+
+private:
+    void handleAnimations();
+
 };

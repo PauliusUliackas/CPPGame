@@ -10,6 +10,11 @@ Player::Player(double x, double y, double width, double height) : Character(x,y,
         inv.add(new Firewall(0, 0));
     }
     inv.print();
+    anime.load("WalkingR", "Player", 16);
+    anime.select("WalkingL");
+    anime.scale("WalkingR", 2, 2);
+    anime.flip("WalkingR", "WalkingL", true, false);
+    anime.resume();
 };
 
 Player::~Player()
@@ -19,6 +24,7 @@ Player::~Player()
 void Player::render(sf::RenderWindow* g)
 {
     hitbox.render(g);
+    anime.play(g, hitbox.getX()+5, hitbox.getY()-25);
 };
 
 void Player::update()

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../DataStructures/Hitbox.hpp"
+#include "../Animation/Animation.hpp"
 
 class Token
 {
@@ -8,6 +9,7 @@ class Token
     protected:
         Hitbox hitbox;
         bool solid;
+        Animation anime;
     
     public:
         Token(double, double, double, double);

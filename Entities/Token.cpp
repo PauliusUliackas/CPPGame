@@ -1,7 +1,8 @@
 #include "Token.hpp"
 
 Token::Token(double x, double y, double width, double height) :
-hitbox(x, y, width, height)
+hitbox(x, y, width, height),
+anime(7)
 {
     solid = true;
 };

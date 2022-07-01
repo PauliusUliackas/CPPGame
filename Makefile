@@ -1,7 +1,7 @@
 all: output run
 
 build:
-	g++ -I src/include -c main.cpp ./DataStructures/*.cpp ./Engine/*cpp ./Entities/*.cpp ./Map/*.cpp ./Skills/*.cpp
+	g++ -I src/include -c main.cpp ./DataStructures/*.cpp ./Engine/*cpp ./Entities/*.cpp ./Map/*.cpp ./Skills/*.cpp ./Animation/*.cpp
 
 output: ./out/*.o
 	g++ ./out/*.o -o ./out/game.exe -L src/lib -l sfml-graphics -l sfml-window -l sfml-audio -l sfml-system -l openal32
@@ -44,6 +44,9 @@ output: ./out/*.o
 
 ./out/Firewall.o: ./Skills/Firewall.cpp
 	g++ -I src/include -c ./Skills/Firewall.cpp -o ./out/Firewall.o
+
+./out/Animation.o: ./Animation/Animation.cpp
+	g++ -I src/include -c ./Animation/Animation.cpp -o ./out/Animation.o
 
 run:
 	./out/game.exe
