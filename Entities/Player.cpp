@@ -14,6 +14,10 @@ Player::Player(double x, double y, double width, double height) : Character(x,y,
     anime.select("WalkingL");
     anime.scale("WalkingR", 2, 2);
     anime.flip("WalkingR", "WalkingL", true, false);
+    anime.load("WalkingUp", "PlayerUp", 16);
+    anime.scale("WalkingUp", 2, 2);
+    anime.load("WalkingDown", "PlayerDown", 16);
+    anime.scale("WalkingDown", 2, 2);
     anime.resume();
 };
 
@@ -24,8 +28,20 @@ Player::~Player()
 void Player::render(sf::RenderWindow* g)
 {
     hitbox.render(g);
+    handleAnimations();
     anime.play(g, hitbox.getX()+5, hitbox.getY()-25);
 };
+
+void Player::handleAnimations()
+{
+    if(velocity.x != 0 || velocity.y != 0) anime.resume();
+    else anime.stop();
+
+    if(velocity.x > 0) anime.select("WalkingR");
+    else if(velocity.x < 0) anime.select("WalkingL");
+    else if(velocity.y < 0) anime.select("WalkingUp");
+    else if(velocity.y > 0) anime.select("WalkingDown");
+}
 
 void Player::update()
 {

@@ -40,7 +40,7 @@ void Animation::load(std::string name, std::string path, double width)
 void Animation::play(sf::RenderWindow* g, double x, double y)
 {
 
-    if(!isPlaying) return;
+    
 
     if(currLength >= length) 
     {
@@ -51,8 +51,9 @@ void Animation::play(sf::RenderWindow* g, double x, double y)
     std::vector<sf::Sprite> current = animations[currentAnimation];
 
     if(index >= current.size()) index = 0;
-
-    currLength += DeltaTime::get();
+    
+    if(isPlaying)
+        currLength += DeltaTime::get();
 
     sf::Sprite s = current[index];
     s.setPosition(x, y);
