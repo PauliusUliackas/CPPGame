@@ -18,7 +18,7 @@ class Token
         virtual void update();
         void moveBy(double, double);
         virtual bool operator==(const Token*);
-        bool operator<(Token&);
+        virtual bool operator<(const Token*);
         bool isSolid();
         bool collides(Token*);
         void setX(double);

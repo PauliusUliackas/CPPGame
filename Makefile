@@ -1,52 +1,55 @@
 all: output run
 
 build:
-	g++ -I src/include -c main.cpp ./DataStructures/*.cpp ./Engine/*cpp ./Entities/*.cpp ./Map/*.cpp ./Skills/*.cpp ./Animation/*.cpp
+	g++ -I src/include -c main.cpp ./DataStructures/*.cpp ./Engine/*cpp ./Entities/*.cpp ./Map/*.cpp ./Skills/*.cpp ./Animation/*.cpp ./UI/*.cpp
 
-output: ./out/*.o
-	g++ ./out/*.o -o ./out/game.exe -L src/lib -l sfml-graphics -l sfml-window -l sfml-audio -l sfml-system -l openal32
+output: *.o
+	g++ *.o -o game.exe -L src/lib -l sfml-graphics -l sfml-window -l sfml-audio -l sfml-system -l openal32
 
-./out/main.o: main.cpp
-	g++ -I src/include -c main.cpp -o ./out/main.o
+./main.o: main.cpp
+	g++ -I src/include -c main.cpp -o main.o
 
-./out/Game.o: ./Engine/Game.cpp
-	g++ -I src/include -c ./Engine/Game.cpp -o ./out/Game.o
+./Game.o: ./Engine/Game.cpp
+	g++ -I src/include -c ./Engine/Game.cpp -o Game.o
 
-./out/Token.o: ./Entities/Token.cpp
-	g++ -I src/include -c ./Entities/Token.cpp -o ./out/Token.o
+./Token.o: ./Entities/Token.cpp
+	g++ -I src/include -c ./Entities/Token.cpp -o Token.o
 
-./out/Hitbox.o: ./DataStructures/Hitbox.cpp
-	g++ -I src/include -c ./DataStructures/Hitbox.cpp -o ./out/Hitbox.o
+./Hitbox.o: ./DataStructures/Hitbox.cpp
+	g++ -I src/include -c ./DataStructures/Hitbox.cpp -o Hitbox.o
 
-./out/DeltaTime.o: ./DataStructures/DeltaTime.cpp
-	g++ -I src/include -c ./DataStructures/DeltaTime.cpp -o ./out/DeltaTime.o
+./DeltaTime.o: ./DataStructures/DeltaTime.cpp
+	g++ -I src/include -c ./DataStructures/DeltaTime.cpp -o DeltaTime.o
 
-./out/Inventory.o: ./DataStructures/Inventory.cpp
-	g++ -I src/include -c ./DataStructures/Inventory.cpp -o ./out/Inventory.o
+./Inventory.o: ./DataStructures/Inventory.cpp
+	g++ -I src/include -c ./DataStructures/Inventory.cpp -o Inventory.o
 
-./out/TokenHandler.o: ./Engine/TokenHandler.cpp
-	g++ -I src/include -c ./Engine/TokenHandler.cpp -o ./out/TokenHandler.o
+./TokenHandler.o: ./Engine/TokenHandler.cpp
+	g++ -I src/include -c ./Engine/TokenHandler.cpp -o TokenHandler.o
 
-./out/Character.o: ./Entities/Character.cpp
-	g++ -I src/include -c ./Entities/Character.cpp -o ./out/Character.o
+./Character.o: ./Entities/Character.cpp
+	g++ -I src/include -c ./Entities/Character.cpp -o Character.o
 
-./out/Player.o: ./Entities/Player.cpp
-	g++ -I src/include -c ./Entities/Player.cpp -o ./out/Player.o
+./Player.o: ./Entities/Player.cpp
+	g++ -I src/include -c ./Entities/Player.cpp -o Player.o
 
-./out/Map.o: ./Map/Map.cpp
-	g++ -I src/include -c ./Map/Map.cpp -o ./out/Map.o
+./Map.o: ./Map/Map.cpp
+	g++ -I src/include -c ./Map/Map.cpp -o Map.o
 
-./out/Tile.o: ./Map/Tile.cpp
-	g++ -I src/include -c ./Map/Tile.cpp -o ./out/Tile.o
+./Tile.o: ./Map/Tile.cpp
+	g++ -I src/include -c ./Map/Tile.cpp -o Tile.o
 
-./out/Skill.o: ./Skills/Skill.cpp
-	g++ -I src/include -c ./Skills/Skill.cpp -o ./out/Skill.o
+./Skill.o: ./Skills/Skill.cpp
+	g++ -I src/include -c ./Skills/Skill.cpp -o Skill.o
 
-./out/Firewall.o: ./Skills/Firewall.cpp
-	g++ -I src/include -c ./Skills/Firewall.cpp -o ./out/Firewall.o
+./Firewall.o: ./Skills/Firewall.cpp
+	g++ -I src/include -c ./Skills/Firewall.cpp -o Firewall.o
 
-./out/Animation.o: ./Animation/Animation.cpp
-	g++ -I src/include -c ./Animation/Animation.cpp -o ./out/Animation.o
+./Animation.o: ./Animation/Animation.cpp
+	g++ -I src/include -c ./Animation/Animation.cpp -o Animation.o
+
+./UI.o: ./UI/UI.cpp
+	g++ -I src/include -c ./UI/UI.cpp -o UI.o
 
 run:
-	./out/game.exe
+	./game.exe

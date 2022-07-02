@@ -32,9 +32,9 @@ bool Token::operator==(const Token* t)
     return t == this;
 };
 
-bool Token::operator<(Token& t)
+bool Token::operator<(const Token* t)
 {
-    return hitbox.getY() < t.hitbox.getY();
+    return hitbox.getY() < t->hitbox.getY();
 };
 
 bool Token::isSolid()

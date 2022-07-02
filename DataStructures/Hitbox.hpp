@@ -17,7 +17,7 @@ class Hitbox
         void render(sf::RenderWindow*, sf::Color = sf::Color::Green);
         
         double getX();
-        double getY();
+        double getY() const;
         double getHeight();
         double getWidth();
 
@@ -27,5 +27,7 @@ class Hitbox
         void moveBy(double, double);
         void setX(double);
         void setY(double);
+        void setWidth(double);
+        void setHeight(double);
 
 };

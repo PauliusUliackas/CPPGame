@@ -2,7 +2,7 @@
 
 Character::Character(double x, double y, double width, double height) : Token(x,y,width,height)
 {
-
+    health = 100;
 };
 
 Character::~Character()
@@ -33,4 +33,13 @@ std::vector<Token*>& Character::getCollisions()
 sf::Vector2f Character::speed()
 {
     return velocity;
-}
+};
+
+void Character::dealDamage(int ticks)
+{
+    health -= ticks;
+    /*
+    if(ticks != 0)
+        std::cout<<health<<std::endl;
+        */
+};

@@ -19,6 +19,8 @@ Player::Player(double x, double y, double width, double height) : Character(x,y,
     anime.load("WalkingDown", "PlayerDown", 16);
     anime.scale("WalkingDown", 2, 2);
     anime.resume();
+    hitbox.setWidth(35);
+    hitbox.setHeight(25);
 };
 
 Player::~Player()
@@ -29,7 +31,7 @@ void Player::render(sf::RenderWindow* g)
 {
     hitbox.render(g);
     handleAnimations();
-    anime.play(g, hitbox.getX()+5, hitbox.getY()-25);
+    anime.play(g, hitbox.getX(), hitbox.getY()-40);
 };
 
 void Player::handleAnimations()
@@ -53,8 +55,22 @@ void Player::update()
     else if(keys[3]) velocity.x = speed;
     else velocity.x = 0;
 
-    
+    handleCollisions();
 };
+
+void Player::handleCollisions()
+{
+    for(Token* t: collisions)
+    {
+        
+        if(Firewall* fw = dynamic_cast<Firewall*>(t))
+        {
+            dealDamage(fw->dealDamage(this));
+            continue;
+        }
+        
+    }
+}
 
 void Player::handleEvents(sf::Event e, sf::RenderWindow* g)
 {

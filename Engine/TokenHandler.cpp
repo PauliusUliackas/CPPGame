@@ -33,11 +33,28 @@ void TokenHandler::render(sf::RenderWindow* g)
 
 void TokenHandler::update()
 {
+
     for(Token* t: add)
     {
         tokens.push_back(t);
     }
     add.clear();
+
+    insertionSort();
+
+    for(Token* t: tokens)
+    {
+        if(Character* c = dynamic_cast<Character*>(t))
+        {
+            move(c);
+        }
+        t->update();
+        if(Skill* skill = dynamic_cast<Skill*>(t))
+        {
+            if(skill->isOver()) this->removeToken(skill);
+        }
+    }
+
     
     for(Token* t: rubbish)
     {
@@ -52,19 +69,6 @@ void TokenHandler::update()
         }
     }
     rubbish.clear();
-
-    for(Token* t: tokens)
-    {
-        t->update();
-        if(Character* c = dynamic_cast<Character*>(t))
-        {
-            move(c);
-        }
-        if(Skill* skill = dynamic_cast<Skill*>(t))
-        {
-            if(skill->isOver()) this->removeToken(skill);
-        }
-    }
 
 };
 
@@ -113,9 +117,10 @@ void TokenHandler::move(Character* c)
                 c->bottomOf(t);
             }
         }
-        allCollisions.push_back(t);
+        if(!contains(allCollisions, t))
+            allCollisions.push_back(t);
     }
-
+    
     c->setCollisions(allCollisions);
 
 };
@@ -129,3 +134,32 @@ std::vector<Token*> TokenHandler::getCollisions(Character* c)
     }
     return collisions;
 };
+
+void TokenHandler::insertionSort()
+{
+    for(int i = 1; i < tokens.size(); i++)
+    {
+        int index = i-1;
+        while(index >= 0 && *tokens[i] < tokens[index])
+        {
+            _switch(i, index);
+            index--;
+        }
+    }
+};
+
+void TokenHandler::_switch(int i, int j)
+{
+    Token* temp = tokens[i];
+    tokens[i] = tokens[j];
+    tokens[j] = temp;
+};
+
+bool TokenHandler::contains(std::vector<Token*> list, Token* value)
+{
+    for(Token* t: list)
+    {
+        if(t == value ) return true;
+    }
+    return false;
+}

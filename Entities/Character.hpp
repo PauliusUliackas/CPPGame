@@ -9,6 +9,7 @@ class Character : public Token
 protected:
     sf::Vector2f velocity;
     std::vector<Token*> collisions;
+    int health;
 
 public:
     Character(double x, double y, double width, double height);
@@ -18,5 +19,7 @@ public:
 
     sf::Vector2f speed();
     void setCollisions(std::vector<Token*>);
-    std::vector<Token*>& getCollisions(); 
+    std::vector<Token*>& getCollisions();
+
+    virtual void dealDamage(int);
 };

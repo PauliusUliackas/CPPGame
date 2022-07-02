@@ -25,7 +25,7 @@ double Hitbox::getX()
     return hitbox.getGlobalBounds().left;
 };
 
-double Hitbox::getY()
+double Hitbox::getY() const
 {
     return hitbox.getGlobalBounds().top;
 };
@@ -59,4 +59,14 @@ void Hitbox::setX(double x)
 void Hitbox::setY(double y)
 {
     hitbox.setPosition(getX(),y);
+};
+
+void Hitbox::setHeight(double height)
+{
+    hitbox.setSize(sf::Vector2f(getWidth(), height));
+};
+
+void Hitbox::setWidth(double width)
+{
+    hitbox.setSize(sf::Vector2f(width, getHeight()));
 };

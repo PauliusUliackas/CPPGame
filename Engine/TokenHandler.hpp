@@ -23,7 +23,11 @@ public:
     static void move(Character*);
     static std::vector<Token*> getRubbish();
     
+    
 private:
     static std::vector<Token*> getCollisions(Character*);
+    void insertionSort();
+    void _switch(int i, int j);
+    static bool contains(std::vector<Token*>, Token*);
 
 };

@@ -13,7 +13,6 @@ private:
     Hitbox mousePos;
     sf::Vector2f windowSize;
     Inventory inv;
-    
 
 public:
     Player(double, double, double, double);
@@ -27,5 +26,6 @@ public:
 
 private:
     void handleAnimations();
+    void handleCollisions();
 
 };

@@ -3,6 +3,7 @@
 #include "TokenHandler.hpp"
 #include "../Entities/Player.hpp"
 #include "../Map/Map.hpp"
+#include "../UI/UI.hpp"
 
 class Game
 {

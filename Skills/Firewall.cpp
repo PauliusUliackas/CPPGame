@@ -3,8 +3,9 @@
 Firewall::Firewall(double x, double y) : 
 Skill("Firewall", x, y)
 {
-    length = 30;
+    length = 40;
     curr = 0;
+    damageCounter = 0;
 }
 
 Firewall::~Firewall()
@@ -37,6 +38,24 @@ Firewall* Firewall::copy()
 
 bool Firewall::isOver()
 {
+    for(auto &pair: damage)
+    {
+        pair.second += DeltaTime::get();
+    }
     curr += DeltaTime::get();
     return Skill::isOver() && curr >= length; 
+};
+
+int Firewall::dealDamage(Character* c)
+{
+    if(damage.find(c) == damage.end())
+    {
+        damage[c] = 0;
+    }
+    else if(damage[c] >= 10)
+    {
+        damage.erase(c);
+        return 5;
+    }
+    return 0;
 };
