@@ -22,6 +22,7 @@ class Game
         Token testB;
         Map map;
         bool mousePressed;
+        UI ui;
         
     public:
         Game();

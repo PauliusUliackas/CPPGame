@@ -1,6 +1,8 @@
 #include "Player.hpp"
 
-Player::Player(double x, double y, double width, double height) : Character(x,y,width,height), mousePos(0,0,1,1)
+Player::Player(double x, double y, double width, double height) : Character(x,y,width,height), mousePos(0,0,1,1),
+redHealth(10,10,100,40),
+greenHealth(10,10,100,40)
 {
     keys = {false, false, false, false};
     speed = 5;
@@ -21,6 +23,9 @@ Player::Player(double x, double y, double width, double height) : Character(x,y,
     anime.resume();
     hitbox.setWidth(35);
     hitbox.setHeight(25);
+    UIdelay = 0;
+
+    
 };
 
 Player::~Player()
@@ -32,6 +37,7 @@ void Player::render(sf::RenderWindow* g)
     hitbox.render(g);
     handleAnimations();
     anime.play(g, hitbox.getX(), hitbox.getY()-40);
+    handleUI(g);
 };
 
 void Player::handleAnimations()
@@ -45,6 +51,18 @@ void Player::handleAnimations()
     else if(velocity.y > 0) anime.select("WalkingDown");
 }
 
+void Player::handleUI(sf::RenderWindow* g)
+{
+    redHealth.render(g, sf::Color::Red);
+    if(UIdelay > 2)
+    {
+        if(health < greenHealth.getWidth())
+            greenHealth.setWidth(greenHealth.getWidth()-1);
+        UIdelay = 0;
+    }
+    greenHealth.render(g, sf::Color::Green);
+};
+
 void Player::update()
 {
     if(keys[0]) velocity.y = -speed;
@@ -56,6 +74,8 @@ void Player::update()
     else velocity.x = 0;
 
     handleCollisions();
+
+    UIdelay += DeltaTime::get();
 };
 
 void Player::handleCollisions()

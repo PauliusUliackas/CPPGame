@@ -66,6 +66,7 @@ void Game::run()
                 }
             }
             handler.render(graphics);
+            ui.render(graphics);
             handler.update();
             DeltaTime::tick();
         }

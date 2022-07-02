@@ -13,6 +13,9 @@ private:
     Hitbox mousePos;
     sf::Vector2f windowSize;
     Inventory inv;
+    Hitbox redHealth;
+    Hitbox greenHealth;
+    float UIdelay;
 
 public:
     Player(double, double, double, double);
@@ -27,5 +30,6 @@ public:
 private:
     void handleAnimations();
     void handleCollisions();
+    void handleUI(sf::RenderWindow*);
 
 };
