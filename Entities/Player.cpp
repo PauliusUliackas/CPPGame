@@ -7,9 +7,9 @@ greenHealth(10,10,100,40)
     keys = {false, false, false, false};
     speed = 5;
     windowSize = sf::Vector2f(800,800);
-    for(int i = 0 ; i< 10; i ++)
+    for(int i = 0 ; i< 2; i ++)
     {
-        inv.add(new Firewall(0, 0));
+        inv.add(new Firewall(0, 0, 1));
     }
     inv.print();
     anime.load("WalkingR", "Player", 16);
@@ -37,6 +37,7 @@ void Player::render(sf::RenderWindow* g)
     hitbox.render(g);
     handleAnimations();
     anime.play(g, hitbox.getX(), hitbox.getY()-40);
+    this->inv.render(g);
     handleUI(g);
 };
 
@@ -86,6 +87,12 @@ void Player::handleCollisions()
         if(Firewall* fw = dynamic_cast<Firewall*>(t))
         {
             dealDamage(fw->dealDamage(this));
+
+            if(fw->canPickUp())
+            {
+                fw->pickUp();
+                inv.add(fw, 1);
+            }
             continue;
         }
         

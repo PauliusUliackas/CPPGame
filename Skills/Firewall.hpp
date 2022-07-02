@@ -15,7 +15,7 @@ private:
     std::unordered_map<Character*, float> damage;
 
 public:
-    Firewall(double, double);
+    Firewall(double, double, int);
     ~Firewall();
     void render(sf::RenderWindow*);
     void activate(Tile&);

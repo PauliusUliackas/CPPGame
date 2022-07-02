@@ -1,11 +1,13 @@
 #include "Skill.hpp"
 
 
-Skill::Skill(std::string name, double x, double y) : Token(x, y, 20, 20)
+Skill::Skill(std::string name, double x, double y, int state) : Token(x, y, 20, 20)
 {
     solid = false;
-    state = STATE::PICKED;
     this->name = name;
+    this->state = STATE::DROP;
+    if(state == 1) this->state = STATE::PICKED;
+    if(state == 2) this->state = STATE::ACTIVE;
 };
 
 Skill::~Skill()
@@ -13,7 +15,9 @@ Skill::~Skill()
     
 };
 
-void Skill::render(sf::RenderWindow* g){};
+void Skill::render(sf::RenderWindow* g)
+{
+};
 
 bool Skill::equals(Skill* skill)
 {
@@ -37,10 +41,25 @@ void Skill::activate(Tile& location)
 
 Skill* Skill::copy()
 {
-    return new Skill(name, hitbox.getX(), hitbox.getY());
+    return new Skill(name, hitbox.getX(), hitbox.getY(), state);
 };
 
 bool Skill::isOver()
 {
     return state == STATE::ACTIVE;
 };
+
+sf::Sprite Skill::getIcon()
+{
+    return this->icon;
+};
+
+bool Skill::canPickUp()
+{
+    return state == DROP;
+};
+
+void Skill::pickUp()
+{
+    state = PICKED;
+}

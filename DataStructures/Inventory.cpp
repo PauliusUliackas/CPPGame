@@ -3,11 +3,17 @@
 Inventory::Inventory()
 {
     selected = 0;
+    texture.loadFromFile("Art/Slot.png");
+    slot.setTexture(texture);
+    slot.scale(4,4);
+    font.loadFromFile("Art/BadComic-Regular.ttf");
+    text.setFont(font);
+    text.setCharacterSize(16);
 };
 
 Inventory::~Inventory(){};
 
-void Inventory::add(Skill* skill, double x)
+void Inventory::add(Skill* skill, int x)
 {
     for(int i = 0; i < items.size(); i++)
     {
@@ -28,7 +34,7 @@ void Inventory::remove(Skill* skill)
         if(items[i]->equals(skill))
         {
             amount[i]--;
-            if(amount[i] < 0)
+            if(amount[i] < 1)
             {
                 items.erase(items.begin() + i);
                 amount.erase(amount.begin() + i);
@@ -84,5 +90,24 @@ void Inventory::print()
     for(int i = 0; i< items.size(); i++)
     {
         std::cout<<items[i]->namae()<<" "<<amount[i]<<std::endl;
+    }
+};
+
+void Inventory::render(sf::RenderWindow* g)
+{
+    for(int i = 0; i< 9; i++)
+    {
+        sf::Sprite frame = slot;
+        frame.setPosition(220+slot.getGlobalBounds().width*i, 750);
+        g->draw(frame);
+        if(i < items.size())
+        {
+            sf::Sprite icon = items[i]->getIcon();
+            icon.setPosition(224+10*i, 754);
+            text.setString(std::to_string(amount[i]));
+            text.setPosition(224+10*i,750);
+            g->draw(icon);
+            g->draw(text);
+        }
     }
 };

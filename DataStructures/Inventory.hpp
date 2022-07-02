@@ -8,13 +8,17 @@ class Inventory
 {
     private:
         std::vector<Skill*> items;
-        std::vector<double> amount;
+        std::vector<int> amount;
         unsigned int selected;
+        sf::Texture texture;
+        sf::Sprite slot;
+        sf::Font font;
+        sf::Text text;
 
     public:
         Inventory();
         ~Inventory();
-        void add(Skill*, double = 1);
+        void add(Skill*, int = 1);
         void remove(Skill*);
         void _switch(Skill*, Skill*);
         void render(sf::RenderWindow*);
