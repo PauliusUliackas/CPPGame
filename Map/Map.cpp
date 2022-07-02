@@ -33,6 +33,7 @@ void Map::load(sf::Vector2f dimentions)
         for(int j = 0; j < dimentions.x; j+= 50)
         {
             Tile* mapTile = new Tile(j, i);
+            mapTile->setOccupied(TokenHandler::intialiseMap(mapTile->getHitbox()));
             grid.push_back(mapTile);
         }
     }

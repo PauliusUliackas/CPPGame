@@ -12,10 +12,11 @@ player(500, 500, 50, 50)
     handler.addToken(&test);
     handler.addToken(&testB);
     handler.addToken(&player);
+
     map.load(sf::Vector2f(800, 800));
     mousePressed = false;
 
-    handler.addToken(new Firewall(100, 200, 0));
+    //handler.addToken(new Firewall(100, 200, 0));
 
 };
 

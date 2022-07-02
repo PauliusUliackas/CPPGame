@@ -162,4 +162,14 @@ bool TokenHandler::contains(std::vector<Token*> list, Token* value)
         if(t == value ) return true;
     }
     return false;
-}
+};
+
+bool TokenHandler::intialiseMap(Hitbox tile)
+{
+    for(Token* t: add)
+    {
+        if(Character* c = dynamic_cast<Character*>(t)) continue;
+        if(tile.intersects(t->getHB())) return true;
+    }
+    return false;
+};

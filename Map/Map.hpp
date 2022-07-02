@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Tile.hpp"
+#include "../Engine/TokenHandler.hpp"
 #include <vector>
 
 class Map

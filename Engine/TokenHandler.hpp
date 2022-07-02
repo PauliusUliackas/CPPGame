@@ -22,6 +22,7 @@ public:
     static void removeToken(Token*);
     static void move(Character*);
     static std::vector<Token*> getRubbish();
+    static bool intialiseMap(Hitbox);
     
     
 private:
