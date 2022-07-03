@@ -66,7 +66,16 @@ void TokenHandler::update()
         if(Skill* skill = dynamic_cast<Skill*>(t))
         {
             if(skill->isOver()) this->removeToken(skill);
-            
+            if(skill->namae() == "Bazooka")
+            {
+                for(Token* t: tokens)
+                {
+                    if(t->collides(skill) && t->isObj())
+                    {
+                        skill->addCollision(t);
+                    }
+                }
+            }
         }
     }
 

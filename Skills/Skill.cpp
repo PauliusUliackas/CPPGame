@@ -4,6 +4,7 @@
 Skill::Skill(std::string name, double x, double y, int state) : Token(x, y, 20, 20), anime(8)
 {
     solid = false;
+    obj = false;
     this->name = name;
     this->state = STATE::DROP;
     if(state == 1) this->state = STATE::PICKED;
@@ -108,4 +109,9 @@ sf::Vector2f Skill::normalise(sf::Vector2f vec1)
 void Skill::setActive()
 {
     state = ACTIVE;
+};
+
+void Skill::addCollision(Token* t)
+{
+    collisions.push_back(t);
 };

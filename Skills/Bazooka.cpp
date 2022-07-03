@@ -35,6 +35,8 @@ void Bazooka::update()
         hitbox.setY(from.y);
         from.x += velocity.x;
         from.y += velocity.y;
+
+        if(collisions.size() > 0) collided = true;
     }
 }
 

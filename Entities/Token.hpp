@@ -9,6 +9,7 @@ class Token
     protected:
         Hitbox hitbox;
         bool solid;
+        bool obj;
         Animation anime;
     
     public:
@@ -20,6 +21,7 @@ class Token
         virtual bool operator==(const Token*);
         virtual bool operator<(const Token*);
         bool isSolid();
+        bool isObj();
         bool collides(Token*);
         void setX(double);
         void setY(double);

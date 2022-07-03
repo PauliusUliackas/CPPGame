@@ -21,6 +21,7 @@ protected:
     sf::Texture texture;
     std::string name;
     Animation anime;
+    std::vector<Token*> collisions;
 
 public:
     Skill(std::string name, double x, double y, int state);
@@ -35,6 +36,8 @@ public:
     void pickUp();
     bool canPickUp();
 
+    void addCollision(Token*);
+
     virtual sf::Sprite getIcon();
 
     std::string namae();
@@ -46,4 +49,5 @@ public:
     sf::Vector2f mult(sf::Vector2f vec1,double vec2);
     sf::Vector2f div(sf::Vector2f vec1,double vec2);
     sf::Vector2f normalise(sf::Vector2f vec);
+    
 };

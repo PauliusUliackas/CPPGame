@@ -3,6 +3,7 @@
 Character::Character(double x, double y, double width, double height) : Token(x,y,width,height)
 {
     health = 100;
+    obj = false;
 };
 
 Character::~Character()

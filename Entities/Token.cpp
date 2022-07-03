@@ -5,6 +5,7 @@ hitbox(x, y, width, height),
 anime(7)
 {
     solid = true;
+    obj = true;
 };
 
 Token::~Token()
@@ -81,3 +82,8 @@ Hitbox Token::getHB()
 {
     return hitbox;
 };
+
+bool Token::isObj()
+{
+    return obj;
+}
