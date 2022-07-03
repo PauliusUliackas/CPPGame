@@ -104,3 +104,8 @@ sf::Vector2f Skill::normalise(sf::Vector2f vec1)
 {
     return div(vec1, magnitude(vec1));
 };
+
+void Skill::setActive()
+{
+    state = ACTIVE;
+};

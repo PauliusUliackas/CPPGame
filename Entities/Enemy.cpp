@@ -1,4 +1,5 @@
 #include "Enemy.hpp"
+#include "../Engine/TokenHandler.hpp"
 
 Enemy::Enemy(double x, double y, double width, double height) : Character(x, y, width, height)
 {
@@ -24,6 +25,25 @@ void Enemy::update()
             dealDamage(fw->dealDamage(this));
             continue;
         }
+
+        if(Bazooka* b = dynamic_cast<Bazooka*>(t))
+        {
+            if(b->isImmuneToPlayer())
+            {
+                dealDamage(b->damage());
+            }
+            continue;
+        }
         
     }
 };
+
+void Enemy::clearSkills()
+{
+    skills.clear();
+};
+
+std::vector<Skill*> Enemy::getSkills()
+{
+    return skills;
+}

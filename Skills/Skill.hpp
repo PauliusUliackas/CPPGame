@@ -38,6 +38,7 @@ public:
     virtual sf::Sprite getIcon();
 
     std::string namae();
+    void setActive();
 
     double magnitude(sf::Vector2f vec);
     sf::Vector2f sub(sf::Vector2f vec1,sf::Vector2f vec2);

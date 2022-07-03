@@ -11,7 +11,6 @@ greenHealth(10,10,100,40)
     {
         inv.add(new Firewall(0, 0, 1));
     }
-    inv.print();
     anime.load("WalkingR", "Player", 16);
     anime.select("WalkingL");
     anime.scale("WalkingR", 2, 2);
@@ -99,6 +98,15 @@ void Player::handleCollisions()
             dealDamage(fw->dealDamage(this));
             continue;
         }
+
+        if(Bazooka* b = dynamic_cast<Bazooka*>(t))
+        {
+            if(!b->isImmuneToPlayer())
+            {
+                dealDamage(b->damage());
+            }
+            continue;
+        }
         
     }
 
@@ -167,10 +175,9 @@ Skill* Player::getSelected()
 void Player::useSkill()
 {
     inv.remove(inv.getSelected());
-    inv.print();
 };
 
 Inventory Player::getInv()
 {
     return inv;
-}
+};

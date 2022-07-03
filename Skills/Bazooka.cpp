@@ -1,11 +1,14 @@
 #include "Bazooka.hpp"
 
-Bazooka::Bazooka(double x, double y, int state) : Skill("Bazooka",x,y,state)
+Bazooka::Bazooka(double x, double y, int state, bool immune) : Skill("Bazooka",x,y,state)
 {
     texture.loadFromFile("Art/BazookaIcon.png");
     icon.setTexture(texture);
     icon.scale(4,4);
     speed = 1;
+    hitbox.setX(x);
+    collided = false;
+    immuneToPlayer = immune;
 }
 
 Bazooka::~Bazooka()
@@ -26,10 +29,13 @@ void Bazooka::render(sf::RenderWindow* g)
 
 void Bazooka::update()
 {
-    hitbox.setX(from.x);
-    hitbox.setY(from.y);
-    from.x += velocity.x;
-    from.y += velocity.y;
+    if(state == ACTIVE)
+    {
+        hitbox.setX(from.x);
+        hitbox.setY(from.y);
+        from.x += velocity.x;
+        from.y += velocity.y;
+    }
 }
 
 void Bazooka::activate(Tile& location)
@@ -53,12 +59,27 @@ bool Bazooka::canActivate(Tile& tile, Character* c)
 
 Bazooka* Bazooka::copy()
 {
-    return new Bazooka(hitbox.getX(), hitbox.getY(), state);
+    return new Bazooka(hitbox.getX(), hitbox.getY(), state, immuneToPlayer);
 };
 
 bool Bazooka::isOver()
 {
-    return false;
+    return collided;
+};
+
+int Bazooka::damage()
+{
+    if(state == ACTIVE){
+        collided = true;
+        
+        return 10;
+    } 
+    return 0;
+};
+
+bool Bazooka::isImmuneToPlayer()
+{
+    return immuneToPlayer;
 };
 
 

@@ -23,6 +23,6 @@ public:
 
     virtual void dealDamage(int);
 
-    bool dead();
+    virtual bool dead();
     int HP();
 };

@@ -2,7 +2,7 @@
 
 #include "Character.hpp"
 #include "../Skills/Firewall.hpp"
-#include "../SKills/Bazooka.hpp"
+#include "../Skills/Bazooka.hpp"
 #include "../DataStructures/Inventory.hpp"
 #include "unordered_map"
 

@@ -1,11 +1,13 @@
 #pragma once
 
 #include "Enemy.hpp"
+#include "../Skills/Bazooka.hpp"
 
 class Swat : public Enemy
 {
 private:
-    /* data */
+    double timer;
+    
 public:
     Swat(double x, double y);
     ~Swat();

@@ -19,7 +19,7 @@ player(500, 500, 50, 50)
     handler.addToken(&player);
     handler.addToken(new Swat(t->getHitbox().getX(), t->getHitbox().getY()));
     //handler.addToken(new Swat(500, 750));
-    handler.addToken(new Bazooka(100, 200, 0));
+    handler.addToken(new Bazooka(100, 200, 0, true));
 
 };
 

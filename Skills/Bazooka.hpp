@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Skill.hpp"
 
 class Bazooka : public Skill
@@ -8,9 +7,11 @@ private:
     double speed;
     sf::Vector2f velocity;
     sf::Vector2f from;
+    bool collided;
+    bool immuneToPlayer;
     
 public:
-    Bazooka(double x, double y, int state);
+    Bazooka(double x, double y, int state, bool);
     ~Bazooka();
     void render(sf::RenderWindow*);
     void update();
@@ -19,4 +20,6 @@ public:
     bool canActivate(Tile& tile, Character* c);
     Bazooka* copy();
     bool isOver();
+    int damage();
+    bool isImmuneToPlayer();
 };

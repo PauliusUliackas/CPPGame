@@ -53,11 +53,29 @@ void TokenHandler::update()
         {
             move(c);
             if(c->dead()) this->removeToken(c);
+            if(Enemy* e = dynamic_cast<Enemy*>(c))
+            {
+                for(Skill* skill: e->getSkills())
+                {
+                    if(!contains(tokens, skill)) addToken(skill);
+                }
+                e->clearSkills();
+            }
         }
         t->update();
         if(Skill* skill = dynamic_cast<Skill*>(t))
         {
             if(skill->isOver()) this->removeToken(skill);
+            for(Token* t: tokens)
+            {
+                if(t->collides(skill) && t != skill)
+                {
+                    if(Bazooka* b = dynamic_cast<Bazooka*>(skill))
+                    {
+                        b->damage();
+                    }
+                }
+            }
         }
     }
 

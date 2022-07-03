@@ -4,6 +4,7 @@ Swat::Swat(double x, double y) : Enemy(x,y,40,40)
 {
     speed = 5;
     health = 25;
+    timer = 30;
 }
 
 Swat::~Swat()
@@ -18,6 +19,7 @@ void Swat::render(sf::RenderWindow* g)
 void Swat::update()
 {
     Enemy::update();
+    timer += DeltaTime::get();
 }
 
 void Swat::AI(Player* p)
@@ -49,7 +51,14 @@ void Swat::AI(Player* p)
     }
     else
     {
+        if(timer < 30) return;
+        timer = 0;
+
         velocity.x = 0;
         velocity.y = 0;
+        Bazooka* bz = new Bazooka(0,0,1, false);
+        bz->setActive();
+        bz->shoot(sf::Vector2f(hitbox.getX(), hitbox.getY()), sf::Vector2f(p->getHB().getX(), p->getHB().getY()));
+        skills.push_back(bz);
     }
 }
