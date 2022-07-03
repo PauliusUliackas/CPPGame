@@ -66,16 +66,7 @@ void TokenHandler::update()
         if(Skill* skill = dynamic_cast<Skill*>(t))
         {
             if(skill->isOver()) this->removeToken(skill);
-            for(Token* t: tokens)
-            {
-                if(t->collides(skill) && t != skill)
-                {
-                    if(Bazooka* b = dynamic_cast<Bazooka*>(skill))
-                    {
-                        b->damage();
-                    }
-                }
-            }
+            
         }
     }
 

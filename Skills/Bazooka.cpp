@@ -49,6 +49,7 @@ void Bazooka::shoot(sf::Vector2f from, sf::Vector2f to)
     sf::Vector2f trajectory = sub(from, to);
     velocity = -mult(normalise(trajectory), speed);
     this->from = from;
+    icon.rotate(std::atan2(trajectory.y, trajectory.x)*180/3.14-90);
 }
 
 bool Bazooka::canActivate(Tile& tile, Character* c)
