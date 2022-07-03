@@ -28,12 +28,21 @@ void Map::render(sf::RenderWindow* g, Hitbox mouse)
 
 void Map::load(sf::Vector2f dimentions)
 {
+    srand(time(NULL));
     for(int i = 0; i<dimentions.y; i+= 50)
     {
         for(int j = 0; j < dimentions.x; j+= 50)
         {
             Tile* mapTile = new Tile(j, i);
-            mapTile->setOccupied(TokenHandler::intialiseMap(mapTile->getHitbox()));
+            if(TokenHandler::intialiseMap(mapTile->getHitbox()))
+            {
+                mapTile->setOccupied(true);
+            }
+            else
+            {
+                spawns.push_back(mapTile);
+                mapTile->setOccupied(false);
+            }
             grid.push_back(mapTile);
         }
     }
@@ -42,4 +51,9 @@ void Map::load(sf::Vector2f dimentions)
 Tile& Map::getSelected()
 {
     return *slected;
+};
+
+Tile* Map::getRandomSpawn()
+{
+    return spawns.at(std::rand() % spawns.size());
 };

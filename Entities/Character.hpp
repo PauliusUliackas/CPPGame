@@ -22,4 +22,7 @@ public:
     std::vector<Token*>& getCollisions();
 
     virtual void dealDamage(int);
+
+    bool dead();
+    int HP();
 };

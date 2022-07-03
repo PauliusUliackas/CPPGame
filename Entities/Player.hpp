@@ -2,6 +2,7 @@
 
 #include "Character.hpp"
 #include "../Skills/Firewall.hpp"
+#include "../SKills/Bazooka.hpp"
 #include "../DataStructures/Inventory.hpp"
 #include "unordered_map"
 
@@ -9,13 +10,13 @@ class Player : public Character
 {
 private:
     std::vector<bool> keys;
-    double speed;
     Hitbox mousePos;
     sf::Vector2f windowSize;
     Inventory inv;
     Hitbox redHealth;
     Hitbox greenHealth;
     float UIdelay;
+    double speed;
 
 public:
     Player(double, double, double, double);
@@ -26,10 +27,11 @@ public:
     Hitbox mousePosition();
     Skill* getSelected();
     void useSkill();
+    void handleCollisions();
+    Inventory getInv();
+    void handleUI(sf::RenderWindow*);
 
 private:
     void handleAnimations();
-    void handleCollisions();
-    void handleUI(sf::RenderWindow*);
 
 };

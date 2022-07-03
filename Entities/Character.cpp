@@ -43,3 +43,13 @@ void Character::dealDamage(int ticks)
         std::cout<<health<<std::endl;
         */
 };
+
+bool Character::dead()
+{
+    return health <= 0;
+};
+
+int Character::HP()
+{
+    return health;
+}

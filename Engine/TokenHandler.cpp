@@ -3,6 +3,7 @@
 std::vector<Token*> TokenHandler::add = {};
 std::vector<Token*> TokenHandler::rubbish = {};
 std::vector<Token*> TokenHandler::tokens = {};
+std::vector<Enemy*> TokenHandler::AI = {};
 
 TokenHandler::TokenHandler()
 {
@@ -37,6 +38,10 @@ void TokenHandler::update()
     for(Token* t: add)
     {
         tokens.push_back(t);
+        if(Enemy* c = dynamic_cast<Enemy*>(t))
+        {
+            AI.push_back(c);
+        }
     }
     add.clear();
 
@@ -47,6 +52,7 @@ void TokenHandler::update()
         if(Character* c = dynamic_cast<Character*>(t))
         {
             move(c);
+            if(c->dead()) this->removeToken(c);
         }
         t->update();
         if(Skill* skill = dynamic_cast<Skill*>(t))
@@ -58,6 +64,16 @@ void TokenHandler::update()
     
     for(Token* t: rubbish)
     {
+        if(Enemy* c = dynamic_cast<Enemy*>(t))
+        {
+            for(int i = 0; i < AI.size(); i++)
+            {
+                if(c == AI[i])
+                {
+                    AI.erase(i + AI.begin());
+                }
+            }
+        }
         for(int i = 0; i < tokens.size(); i++)
         {
             if(t == tokens.at(i))
@@ -66,6 +82,7 @@ void TokenHandler::update()
                 tokens.erase(tokens.begin()+i);
                 delete token;
             }
+            
         }
     }
     rubbish.clear();
@@ -172,4 +189,12 @@ bool TokenHandler::intialiseMap(Hitbox tile)
         if(tile.intersects(t->getHB())) return true;
     }
     return false;
+};
+
+void TokenHandler::handleAI(Player* p)
+{
+    for(Enemy* e: AI)
+    {
+        e->AI(p);
+    }
 };

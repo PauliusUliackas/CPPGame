@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../Entities/Character.hpp"
+#include "../Entities/Player.hpp"
+#include "../Entities/Enemy.hpp"
 #include "../Skills/Skill.hpp"
 #include <vector>
 #include<algorithm>
@@ -12,6 +13,7 @@ private:
     static std::vector<Token*> tokens;
     static std::vector<Token*> add;
     static std::vector<Token*> rubbish;
+    static std::vector<Enemy*> AI;
 
 public:
     TokenHandler();
@@ -23,7 +25,7 @@ public:
     static void move(Character*);
     static std::vector<Token*> getRubbish();
     static bool intialiseMap(Hitbox);
-    
+    static void handleAI(Player*);
     
 private:
     static std::vector<Token*> getCollisions(Character*);

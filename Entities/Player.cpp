@@ -7,7 +7,7 @@ greenHealth(10,10,100,40)
     keys = {false, false, false, false};
     speed = 5;
     windowSize = sf::Vector2f(800,800);
-    for(int i = 0 ; i< 2; i ++)
+    for(int i = 0 ; i< 10; i ++)
     {
         inv.add(new Firewall(0, 0, 1));
     }
@@ -37,7 +37,6 @@ void Player::render(sf::RenderWindow* g)
     hitbox.render(g);
     handleAnimations();
     anime.play(g, hitbox.getX(), hitbox.getY()-40);
-    this->inv.render(g);
     handleUI(g);
 };
 
@@ -61,6 +60,7 @@ void Player::handleUI(sf::RenderWindow* g)
             greenHealth.setWidth(greenHealth.getWidth()-1);
         UIdelay = 0;
     }
+    this->inv.render(g);
     greenHealth.render(g, sf::Color::Green);
 };
 
@@ -83,20 +83,25 @@ void Player::handleCollisions()
 {
     for(Token* t: collisions)
     {
+
+        if(Skill* s = dynamic_cast<Skill*>(t))
+        {
+
+            if(s->canPickUp())
+            {
+                s->pickUp();
+                inv.add(s, 1);
+            }
+        }
         
         if(Firewall* fw = dynamic_cast<Firewall*>(t))
         {
             dealDamage(fw->dealDamage(this));
-
-            if(fw->canPickUp())
-            {
-                fw->pickUp();
-                inv.add(fw, 1);
-            }
             continue;
         }
         
     }
+
 }
 
 void Player::handleEvents(sf::Event e, sf::RenderWindow* g)
@@ -164,3 +169,8 @@ void Player::useSkill()
     inv.remove(inv.getSelected());
     inv.print();
 };
+
+Inventory Player::getInv()
+{
+    return inv;
+}

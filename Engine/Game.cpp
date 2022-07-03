@@ -11,12 +11,15 @@ player(500, 500, 50, 50)
     currState = GAME;
     handler.addToken(&test);
     handler.addToken(&testB);
-    handler.addToken(&player);
 
     map.load(sf::Vector2f(800, 800));
     mousePressed = false;
 
-    //handler.addToken(new Firewall(100, 200, 0));
+    Tile* t = map.getRandomSpawn();
+    handler.addToken(&player);
+    handler.addToken(new Swat(t->getHitbox().getX(), t->getHitbox().getY()));
+    //handler.addToken(new Swat(500, 750));
+    handler.addToken(new Bazooka(100, 200, 0));
 
 };
 
@@ -61,7 +64,7 @@ void Game::run()
                     skill = skill->copy();
                     Tile& tile = map.getSelected();
 
-                    if(skill->canActivate(tile))
+                    if(skill->canActivate(tile, &player))
                     {
                         skill->activate(tile);
                         player.useSkill();
@@ -69,10 +72,13 @@ void Game::run()
                     }
                 }
             }
+            handler.handleAI(&player);
             handler.render(graphics);
-            ui.render(graphics);
+            ui.render(graphics, player);
             handler.update();
             DeltaTime::tick();
+
+            if(player.dead()) return;
         }
 
         graphics->display();

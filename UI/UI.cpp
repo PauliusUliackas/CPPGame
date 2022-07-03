@@ -8,7 +8,7 @@ UI::~UI()
 {
 };
 
-void UI::render(sf::RenderWindow* g)
+void UI::render(sf::RenderWindow* g, Player p)
 {
-
+    p.handleUI(g);
 };

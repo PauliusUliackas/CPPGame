@@ -1,7 +1,7 @@
 #include "Skill.hpp"
 
 
-Skill::Skill(std::string name, double x, double y, int state) : Token(x, y, 20, 20)
+Skill::Skill(std::string name, double x, double y, int state) : Token(x, y, 20, 20), anime(8)
 {
     solid = false;
     this->name = name;
@@ -17,14 +17,24 @@ Skill::~Skill()
 
 void Skill::render(sf::RenderWindow* g)
 {
+    if(state == PICKED) return;
+
+    if(state == DROP)
+    {
+        icon.setPosition(hitbox.getX(), hitbox.getY());
+        g->draw(icon);
+    }
 };
+
+void Skill::update()
+{};
 
 bool Skill::equals(Skill* skill)
 {
     return name == skill->name;
 };
 
-bool Skill::canActivate(Tile& tile)
+bool Skill::canActivate(Tile& tile, Character* c)
 {
     return state == PICKED;
 };
@@ -62,4 +72,35 @@ bool Skill::canPickUp()
 void Skill::pickUp()
 {
     state = PICKED;
-}
+};
+
+
+double Skill::magnitude(sf::Vector2f vec)
+{
+    return std::sqrt(std::pow(vec.x,2)+std::pow(vec.y,2));
+};
+
+sf::Vector2f Skill::sub(sf::Vector2f vec1,sf::Vector2f vec2)
+{
+    return sf::Vector2f(vec1.x - vec2.x, vec1.y - vec2.y);
+};
+
+sf::Vector2f Skill::add(sf::Vector2f vec1,sf::Vector2f vec2)
+{
+    return sf::Vector2f(vec1.x + vec2.x, vec1.y + vec2.y);
+};
+
+sf::Vector2f Skill::mult(sf::Vector2f vec1,double vec2)
+{
+    return sf::Vector2f(vec1.x * vec2, vec1.y * vec2);
+};
+
+sf::Vector2f Skill::div(sf::Vector2f vec1,double vec2)
+{
+    return mult(vec1, 1.0/vec2);
+};
+
+sf::Vector2f Skill::normalise(sf::Vector2f vec1)
+{
+    return div(vec1, magnitude(vec1));
+};

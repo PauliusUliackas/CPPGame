@@ -30,8 +30,14 @@ output: *.o
 ./Character.o: ./Entities/Character.cpp
 	g++ -I src/include -c ./Entities/Character.cpp -o Character.o
 
+./Enemy.o: ./Entities/Enemy.cpp
+	g++ -I src/include -c ./Entities/Enemy.cpp -o Enemy.o
+
 ./Player.o: ./Entities/Player.cpp
 	g++ -I src/include -c ./Entities/Player.cpp -o Player.o
+
+./Swat.o: ./Entities/Swat.cpp
+	g++ -I src/include -c ./Entities/Swat.cpp -o Swat.o
 
 ./Map.o: ./Map/Map.cpp
 	g++ -I src/include -c ./Map/Map.cpp -o Map.o
@@ -44,6 +50,9 @@ output: *.o
 
 ./Firewall.o: ./Skills/Firewall.cpp
 	g++ -I src/include -c ./Skills/Firewall.cpp -o Firewall.o
+
+./Bazooka.o: ./Skills/Bazooka.cpp
+	g++ -I src/include -c ./Skills/Bazooka.cpp -o Bazooka.o
 
 ./Animation.o: ./Animation/Animation.cpp
 	g++ -I src/include -c ./Animation/Animation.cpp -o Animation.o

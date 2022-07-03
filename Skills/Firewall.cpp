@@ -9,6 +9,9 @@ Skill("Firewall", x, y, state)
     texture.loadFromFile("Art/FireIcon.png");
     icon.setTexture(texture);
     icon.scale(4,4);
+    anime.load("Fire", "Fire", 25);
+    anime.scale("Fire", 2, 2);
+    anime.select("Fire");
 }
 
 Firewall::~Firewall()
@@ -19,7 +22,18 @@ Firewall::~Firewall()
 void Firewall::render(sf::RenderWindow* g)
 {
     if(state == PICKED) return;
-    hitbox.render(g, sf::Color{255,127,80,255});
+    
+    if(state == DROP)
+    {
+        icon.setPosition(hitbox.getX(), hitbox.getY());
+        g->draw(icon);
+    }
+
+    if(state == ACTIVE) 
+    {
+        anime.resume();
+        anime.play(g, hitbox.getX(), hitbox.getY() - (90 - 48));
+    }
 };
 
 void Firewall::activate(Tile& location)
@@ -30,9 +44,15 @@ void Firewall::activate(Tile& location)
     activeOn->setOccupied(true);
 };
 
-bool Firewall::canActivate(Tile& tile)
+bool Firewall::canActivate(Tile& tile, Character* c)
 {
-    return Skill::canActivate(tile) && !tile.isOccupied();
+    double length = 500;
+    double x1 = c->getHB().getX();
+    double y1 = c->getHB().getY();
+    double x2 = tile.getHitbox().getX();
+    double y2 = tile.getHitbox().getY();
+    if( std::sqrt(std::pow(x2-x1,2) + std::pow(y2-y1,2)) > length) return false;
+    return Skill::canActivate(tile, c) && !tile.isOccupied();
 };
 
 Firewall* Firewall::copy()

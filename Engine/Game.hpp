@@ -4,6 +4,7 @@
 #include "../Entities/Player.hpp"
 #include "../Map/Map.hpp"
 #include "../UI/UI.hpp"
+#include "../Entities/Swat.hpp"
 
 class Game
 {

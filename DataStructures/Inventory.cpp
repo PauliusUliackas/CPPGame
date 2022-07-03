@@ -103,9 +103,9 @@ void Inventory::render(sf::RenderWindow* g)
         if(i < items.size())
         {
             sf::Sprite icon = items[i]->getIcon();
-            icon.setPosition(224+10*i, 754);
+            icon.setPosition(224+slot.getGlobalBounds().width*i, 754);
             text.setString(std::to_string(amount[i]));
-            text.setPosition(224+10*i,750);
+            text.setPosition(224+slot.getGlobalBounds().width*i,750);
             g->draw(icon);
             g->draw(text);
         }
