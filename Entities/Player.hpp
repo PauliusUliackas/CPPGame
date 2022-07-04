@@ -19,7 +19,7 @@ private:
     double speed;
 
 public:
-    Player(double, double, double, double);
+    Player(double, double, double, double, std::string name = "");
     ~Player();
     void render(sf::RenderWindow*);
     void update();

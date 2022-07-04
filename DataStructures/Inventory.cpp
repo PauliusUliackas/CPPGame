@@ -9,36 +9,60 @@ Inventory::Inventory()
     font.loadFromFile("Art/BadComic-Regular.ttf");
     text.setFont(font);
     text.setCharacterSize(16);
+
+    txt.loadFromFile("Art/Slot1.png");
+    slt1.setTexture(txt);
+    slt1.scale(4,4);
+
+    for(int i = 0; i < size; i++)
+    {
+        amount[i] = 0;
+        items[i] = NULL;
+    }
+
 };
 
 Inventory::~Inventory(){};
 
 void Inventory::add(Skill* skill, int x)
 {
-    for(int i = 0; i < items.size(); i++)
+    for(int i = 0; i < size; i++)
     {
+        if(items[i] == NULL) continue;
+
         if(items[i]->equals(skill))
         {
             amount[i]+=x;
             return;
         }
     }
-    items.push_back(skill);
-    amount.push_back(x);
+
+    for(int i = 0; i < size; i++)
+    {
+        if(items[i] == NULL)
+        {
+            items[i] = skill;
+            amount[i] = x;
+            return;
+        }
+    }
 };
 
 void Inventory::remove(Skill* skill)
 {
-    for(int i = 0; i < items.size(); i++)
+    for(int i = 0; i < size; i++)
     {
+        if(items[i] == NULL) continue;
+
         if(items[i]->equals(skill))
         {
             amount[i]--;
             if(amount[i] < 1)
             {
-                items.erase(items.begin() + i);
-                amount.erase(amount.begin() + i);
+                items[i] = NULL;
+                amount[i] = 0;
             }
+            return;
         }
     }
 };
@@ -47,7 +71,7 @@ void Inventory::_switch(Skill* one, Skill* two)
 {
     int index1 = -1;
     int index2 = -1;
-    for(int i = 0; i < items.size(); i++)
+    for(int i = 0; i < size; i++)
     {
         if(items[i]->equals(one))
         {
@@ -78,7 +102,7 @@ void Inventory::select(int i)
 
 Skill* Inventory::getSelected()
 {
-    if(items.size() == 0) 
+    if(size == 0) 
     {
         return nullptr;
     }
@@ -87,7 +111,7 @@ Skill* Inventory::getSelected()
 
 void Inventory::print()
 {
-    for(int i = 0; i< items.size(); i++)
+    for(int i = 0; i< size; i++)
     {
         std::cout<<items[i]->namae()<<" "<<amount[i]<<std::endl;
     }
@@ -98,9 +122,10 @@ void Inventory::render(sf::RenderWindow* g)
     for(int i = 0; i< 9; i++)
     {
         sf::Sprite frame = slot;
+        if(i == selected) frame = slt1;
         frame.setPosition(220+slot.getGlobalBounds().width*i, 750);
         g->draw(frame);
-        if(i < items.size())
+        if(items[i] != NULL)
         {
             sf::Sprite icon = items[i]->getIcon();
             icon.setPosition(224+slot.getGlobalBounds().width*i, 754);

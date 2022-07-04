@@ -7,11 +7,12 @@
 class Inventory
 {
     private:
-        std::vector<Skill*> items;
-        std::vector<int> amount;
+        const int size = 15;
+        Skill* items[15];
+        int amount[15];
         unsigned int selected;
-        sf::Texture texture;
-        sf::Sprite slot;
+        sf::Texture texture, txt;
+        sf::Sprite slot, slt1;
         sf::Font font;
         sf::Text text;
 

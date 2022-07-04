@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-Player::Player(double x, double y, double width, double height) : Character(x,y,width,height), mousePos(0,0,1,1),
+Player::Player(double x, double y, double width, double height, std::string name) : Character(x,y,width,height), mousePos(0,0,1,1),
 redHealth(10,10,100,40),
 greenHealth(10,10,100,40)
 {
@@ -23,8 +23,6 @@ greenHealth(10,10,100,40)
     hitbox.setWidth(35);
     hitbox.setHeight(25);
     UIdelay = 0;
-
-    
 };
 
 Player::~Player()
@@ -133,7 +131,44 @@ void Player::handleEvents(sf::Event e, sf::RenderWindow* g)
         {
             keys[3] = true;
         }
+        if(e.key.code == sf::Keyboard::Num1)
+        {
+            inv.select(0);
+        }
+        if(e.key.code == sf::Keyboard::Num2)
+        {
+            inv.select(1);
+        }
+        if(e.key.code == sf::Keyboard::Num3)
+        {
+            inv.select(2);
+        }
+        if(e.key.code == sf::Keyboard::Num4)
+        {
+            inv.select(3);
+        }
+        if(e.key.code == sf::Keyboard::Num5)
+        {
+            inv.select(4);
+        }
+        if(e.key.code == sf::Keyboard::Num6)
+        {
+            inv.select(5);
+        }
+        if(e.key.code == sf::Keyboard::Num7)
+        {
+            inv.select(6);
+        }
+        if(e.key.code == sf::Keyboard::Num8)
+        {
+            inv.select(7);
+        }
+        if(e.key.code == sf::Keyboard::Num9)
+        {
+            inv.select(8);
+        }
     }
+    
     if(e.type == sf::Event::KeyReleased)
     {
         if(e.key.code == sf::Keyboard::W)

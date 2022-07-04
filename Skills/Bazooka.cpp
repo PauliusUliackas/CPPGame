@@ -5,7 +5,7 @@ Bazooka::Bazooka(double x, double y, int state, bool immune) : Skill("Bazooka",x
     texture.loadFromFile("Art/BazookaIcon.png");
     icon.setTexture(texture);
     icon.scale(4,4);
-    speed = 1;
+    speed = 7;
     hitbox.setX(x);
     collided = false;
     immuneToPlayer = immune;
@@ -33,8 +33,8 @@ void Bazooka::update()
     {
         hitbox.setX(from.x);
         hitbox.setY(from.y);
-        from.x += velocity.x;
-        from.y += velocity.y;
+        from.x += velocity.x * DeltaTime::get();
+        from.y += velocity.y * DeltaTime::get();
 
         if(collisions.size() > 0) collided = true;
     }
