@@ -9,6 +9,7 @@ Swat::Swat(double x, double y) : Enemy(x,y,40,40)
 
 Swat::~Swat()
 {
+    
 }
 
 void Swat::render(sf::RenderWindow* g)
@@ -62,4 +63,9 @@ void Swat::AI(Player* p)
         bz->shoot(sf::Vector2f(hitbox.getX(), hitbox.getY()), sf::Vector2f(p->getHB().getX(), p->getHB().getY()));
         skills.push_back(bz);
     }
+}
+
+Skill* Swat::drop()
+{
+    return new Bazooka(hitbox.getX(),hitbox.getY(),0,true);
 }

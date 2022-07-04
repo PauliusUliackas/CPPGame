@@ -18,4 +18,6 @@ public:
     void clearSkills();
     std::vector<Skill*> getSkills();
 
+    virtual Skill* drop() = 0;
+
 };

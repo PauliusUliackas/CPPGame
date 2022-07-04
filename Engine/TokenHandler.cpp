@@ -52,7 +52,6 @@ void TokenHandler::update()
         if(Character* c = dynamic_cast<Character*>(t))
         {
             move(c);
-            if(c->dead()) this->removeToken(c);
             if(Enemy* e = dynamic_cast<Enemy*>(c))
             {
                 for(Skill* skill: e->getSkills())
@@ -60,7 +59,9 @@ void TokenHandler::update()
                     if(!contains(tokens, skill)) addToken(skill);
                 }
                 e->clearSkills();
+                if(e->dead()) addToken(e->drop());
             }
+            if(c->dead()) this->removeToken(c);
         }
         t->update();
         if(Skill* skill = dynamic_cast<Skill*>(t))

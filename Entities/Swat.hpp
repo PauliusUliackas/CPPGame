@@ -14,4 +14,5 @@ public:
     void render(sf::RenderWindow*);
     void update();
     virtual void AI(Player*);
+    Skill* drop();
 };
