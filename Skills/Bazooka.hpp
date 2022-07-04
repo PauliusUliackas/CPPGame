@@ -9,6 +9,7 @@ private:
     sf::Vector2f from;
     bool collided;
     bool immuneToPlayer;
+    double distance;
     
 public:
     Bazooka(double x, double y, int state, bool);

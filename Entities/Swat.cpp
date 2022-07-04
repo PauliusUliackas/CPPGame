@@ -51,6 +51,7 @@ void Swat::AI(Player* p)
     }
     else
     {
+
         if(timer < 30) return;
         timer = 0;
 

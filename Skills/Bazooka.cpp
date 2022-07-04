@@ -9,10 +9,12 @@ Bazooka::Bazooka(double x, double y, int state, bool immune) : Skill("Bazooka",x
     hitbox.setX(x);
     collided = false;
     immuneToPlayer = immune;
+    distance = 0;
 }
 
 Bazooka::~Bazooka()
 {
+    std::cout << "Deleted" <<std::endl;
 }
 
 void Bazooka::render(sf::RenderWindow* g)
@@ -22,7 +24,7 @@ void Bazooka::render(sf::RenderWindow* g)
 
     if(state == ACTIVE)
     {
-        icon.setPosition(hitbox.getX(), hitbox.getY());
+        icon.setPosition(hitbox.getX() + ( hitbox.getWidth()) / 2, hitbox.getY() + (hitbox.getHeight()) / 2);
         g->draw(icon);
     }
 };
@@ -31,12 +33,12 @@ void Bazooka::update()
 {
     if(state == ACTIVE)
     {
-        hitbox.setX(from.x);
-        hitbox.setY(from.y);
-        from.x += velocity.x * DeltaTime::get();
-        from.y += velocity.y * DeltaTime::get();
+        double xVel = velocity.x * DeltaTime::get();
+        double yVel = velocity.y * DeltaTime::get();
 
-        if(collisions.size() > 0) collided = true;
+        distance = magnitude(sub(from, sf::Vector2f(hitbox.getX(), hitbox.getX())));
+
+        hitbox.moveBy(xVel, yVel);
     }
 }
 
@@ -51,7 +53,13 @@ void Bazooka::shoot(sf::Vector2f from, sf::Vector2f to)
     sf::Vector2f trajectory = sub(from, to);
     velocity = -mult(normalise(trajectory), speed);
     this->from = from;
-    icon.rotate(std::atan2(trajectory.y, trajectory.x)*180/3.14-90);
+    double angle = std::atan2(trajectory.y, trajectory.x)*180/3.14-90;
+    icon.setOrigin((icon.getLocalBounds().left + icon.getLocalBounds().width) / 2, (icon.getLocalBounds().top + icon.getLocalBounds().height) / 2);
+    hitbox.setOrigin((hitbox.getX() + hitbox.getWidth()) / 2, (hitbox.getY() + hitbox.getHeight()) / 2);
+    hitbox.setX(from.x);
+    hitbox.setY(from.y);
+    icon.setRotation(angle);
+    hitbox.rotate(angle);
 }
 
 bool Bazooka::canActivate(Tile& tile, Character* c)
@@ -67,7 +75,7 @@ Bazooka* Bazooka::copy()
 
 bool Bazooka::isOver()
 {
-    return collided;
+    return collided || (Skill::isOver() && collisions.size()) || distance > 900;
 };
 
 int Bazooka::damage()

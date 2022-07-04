@@ -2,7 +2,7 @@
 
 Game::Game() :
 test(500, 200, 100, 100),
-testB(510, 230, 100, 40),
+testB(110, 230, 100, 40),
 player(500, 500, 50, 50)
 {
     HEIGHT = 800;
@@ -20,6 +20,9 @@ player(500, 500, 50, 50)
     handler.addToken(new Swat(t->getHitbox().getX(), t->getHitbox().getY()));
     //handler.addToken(new Swat(500, 750));
     handler.addToken(new Bazooka(100, 200, 0, true));
+
+    playerCooldowns["Bazooka"]  = {0, 40};
+    playerCooldowns["Firewall"] = {0,0};
 
 };
 
@@ -61,17 +64,29 @@ void Game::run()
 
                 if(skill != nullptr)
                 {
-                    skill = skill->copy();
-                    Tile& tile = map.getSelected();
 
-                    if(skill->canActivate(tile, &player))
+                    if(playerCooldowns[skill->namae()].first <= 0)
                     {
-                        skill->activate(tile);
-                        player.useSkill();
-                        handler.addToken(skill);
+                        playerCooldowns[skill->namae()].first = playerCooldowns[skill->namae()].second;
+
+                        skill = skill->copy();
+                        Tile& tile = map.getSelected();
+
+                        if(skill->canActivate(tile, &player))
+                        {
+                            skill->activate(tile);
+                            player.useSkill();
+                            handler.addToken(skill);
+                        }
                     }
                 }
             }
+
+            for(auto& pair: playerCooldowns)
+            {
+                pair.second.first -= DeltaTime::get();
+            }
+
             handler.handleAI(&player);
             handler.render(graphics);
             ui.render(graphics, player);

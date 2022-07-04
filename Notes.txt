@@ -1,0 +1,1 @@
+Bazooka does not fire untill picked up

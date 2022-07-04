@@ -19,11 +19,13 @@ class Game
         };
         STATE currState;
         Player player;
-        Character test;
+        Token test;
         Token testB;
         Map map;
         bool mousePressed;
         UI ui;
+
+        std::unordered_map<std::string, std::pair<double,double>> playerCooldowns;
         
     public:
         Game();

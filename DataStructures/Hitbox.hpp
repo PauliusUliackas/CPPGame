@@ -30,4 +30,7 @@ class Hitbox
         void setWidth(double);
         void setHeight(double);
 
+        void rotate(double angle);
+        void setOrigin(double, double);
+
 };

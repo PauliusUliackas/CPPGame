@@ -70,3 +70,13 @@ void Hitbox::setWidth(double width)
 {
     hitbox.setSize(sf::Vector2f(width, getHeight()));
 };
+
+void Hitbox::rotate(double angle)
+{
+    hitbox.setRotation(angle);
+};
+
+void Hitbox::setOrigin(double x, double y)
+{
+    hitbox.setOrigin(x,y);
+}
