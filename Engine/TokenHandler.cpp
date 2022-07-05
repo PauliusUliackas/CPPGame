@@ -30,7 +30,6 @@ void TokenHandler::render(sf::RenderWindow* g)
     {
         t->render(g);
     }
-    //std::cout<<tokens.size()<<std::endl;
 };
 
 void TokenHandler::update()

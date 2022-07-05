@@ -76,9 +76,11 @@ void Game::run()
                             player.useSkill();
                             handler.addToken(other);
                         }
-                        handler.removeToken(skill);
                     }
+                    if(!player.getInv().contains(skill))
+                        handler.removeToken(skill);
                 }
+
             }
 
             for(auto& pair: playerCooldowns)

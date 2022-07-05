@@ -9,7 +9,7 @@ greenHealth(10,10,100,40)
     windowSize = sf::Vector2f(800,800);
     for(int i = 0 ; i< 10; i ++)
     {
-        inv.add(new Bazooka(0, 0, 1, true));
+        //inv.add(new Bazooka(0, 0, 1, true));
         inv.add(new Firewall(0, 0, 1));
     }
     anime.load("WalkingR", "Player", 16);

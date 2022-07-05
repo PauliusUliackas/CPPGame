@@ -30,4 +30,5 @@ class Inventory
         Skill* getSelected();
         void print();
         bool handle(Hitbox mouse);
+        bool contains(Skill*);
 };

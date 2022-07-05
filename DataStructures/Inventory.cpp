@@ -143,3 +143,12 @@ bool Inventory::handle(Hitbox mouse)
     return false;
 
 };
+
+bool Inventory::contains(Skill* s)
+{
+    for(int i = 0; i < size; i++)
+    {
+        if(items[i] == s) return true;
+    }
+    return false;
+}
