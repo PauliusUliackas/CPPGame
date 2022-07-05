@@ -14,6 +14,8 @@ Inventory::Inventory()
     slt1.setTexture(txt);
     slt1.scale(4,4);
 
+    switchOne = -1;
+
     for(int i = 0; i < size; i++)
     {
         amount[i] = 0;
@@ -68,23 +70,8 @@ void Inventory::remove(Skill* skill)
     }
 };
 
-void Inventory::_switch(Skill* one, Skill* two)
+void Inventory::_switch(int index1, int index2)
 {
-    int index1 = -1;
-    int index2 = -1;
-    for(int i = 0; i < size; i++)
-    {
-        if(items[i]->equals(one))
-        {
-           index1 = i;
-        }
-        if(items[i]->equals(two))
-        {
-            index2 = i;
-        }
-    }
-    if(index1 > -1 && index2 > -1)
-    {
         int tempAmount = amount[index2];
         Skill* tempSkill = items[index2];
 
@@ -93,7 +80,6 @@ void Inventory::_switch(Skill* one, Skill* two)
 
         amount[index1] = tempAmount;
         items[index1] = tempSkill;
-    }
 };
 
 void Inventory::select(int i)
@@ -136,4 +122,24 @@ void Inventory::render(sf::RenderWindow* g)
             g->draw(text);
         }
     }
+};
+
+bool Inventory::handle(Hitbox mouse)
+{
+    
+    for(int i = 0; i< 9; i++)
+    {
+        bool intersects = mouse.intersects(Hitbox(220+slot.getGlobalBounds().width*i, 750, slot.getGlobalBounds().width, slot.getGlobalBounds().height));
+        
+        if(intersects && items[i] != NULL && switchOne < 0) switchOne = i;
+        else if(intersects && switchOne >= 0)
+        {
+            _switch(switchOne, i);
+            switchOne = -1;
+        }
+
+        if(intersects) return true;
+    }
+    return false;
+
 };

@@ -1,1 +1,1 @@
-Bazooka fires from a wrong place
+Program closes itself in wave 4 if using Bazooka.

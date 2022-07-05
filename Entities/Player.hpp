@@ -28,7 +28,7 @@ public:
     Skill* getSelected();
     void useSkill();
     void handleCollisions();
-    Inventory getInv();
+    Inventory& getInv();
     void handleUI(sf::RenderWindow*);
 
 private:

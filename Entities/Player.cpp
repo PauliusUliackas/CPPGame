@@ -213,7 +213,7 @@ void Player::useSkill()
     inv.remove(inv.getSelected());
 };
 
-Inventory Player::getInv()
+Inventory& Player::getInv()
 {
     return inv;
 };

@@ -42,7 +42,7 @@ void Game::run()
             }
             if (event.type == sf::Event::MouseButtonPressed)
             {
-                mousePressed = true;
+                mousePressed = !player.getInv().handle(player.mousePosition());
             }
             player.handleEvents(event, graphics);
         }

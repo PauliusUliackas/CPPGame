@@ -17,14 +17,17 @@ class Inventory
         sf::Font font;
         sf::Text text;
 
+        int switchOne;
+
     public:
         Inventory();
         ~Inventory();
         void add(Skill*, int = 1);
         void remove(Skill*);
-        void _switch(Skill*, Skill*);
+        void _switch(int, int);
         void render(sf::RenderWindow*);
         void select(int);
         Skill* getSelected();
         void print();
+        bool handle(Hitbox mouse);
 };
