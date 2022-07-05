@@ -17,7 +17,7 @@ public:
     Firewall(double, double, int);
     ~Firewall();
     void render(sf::RenderWindow*);
-    void activate(Tile&);
+    void activate(Tile&, sf::Vector2f from);
     bool canActivate(Tile& tile, Character* c);
     Firewall* copy();
     bool isOver();

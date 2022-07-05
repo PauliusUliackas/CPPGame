@@ -45,7 +45,7 @@ std::string Skill::namae()
     return name;
 };
 
-void Skill::activate(Tile& location)
+void Skill::activate(Tile& location, sf::Vector2f from)
 {
     state = STATE::ACTIVE;
 };

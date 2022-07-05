@@ -36,9 +36,9 @@ void Firewall::render(sf::RenderWindow* g)
     }
 };
 
-void Firewall::activate(Tile& location)
+void Firewall::activate(Tile& location, sf::Vector2f from)
 {
-    Skill::activate(location);
+    Skill::activate(location, from);
     hitbox = location.getTile();
     activeOn = &location;
     activeOn->setOccupied(true);

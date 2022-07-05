@@ -15,4 +15,5 @@ public:
     void update();
     virtual void AI(Player*);
     Skill* drop();
+    Swat* spawn(double x, double y);
 };

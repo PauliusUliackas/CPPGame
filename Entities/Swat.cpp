@@ -68,4 +68,9 @@ void Swat::AI(Player* p)
 Skill* Swat::drop()
 {
     return new Bazooka(hitbox.getX(),hitbox.getY(),0,true);
+};
+
+Swat* Swat::spawn(double x, double y)
+{
+    return new Swat(x, y);
 }

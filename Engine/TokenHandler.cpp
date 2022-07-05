@@ -7,7 +7,7 @@ std::vector<Enemy*> TokenHandler::AI = {};
 
 TokenHandler::TokenHandler()
 {
-    
+    enemies = false;
 };
 
 TokenHandler::~TokenHandler()
@@ -34,7 +34,7 @@ void TokenHandler::render(sf::RenderWindow* g)
 
 void TokenHandler::update()
 {
-
+    enemies = false;
     for(Token* t: add)
     {
         tokens.push_back(t);
@@ -60,6 +60,7 @@ void TokenHandler::update()
                 }
                 e->clearSkills();
                 if(e->dead()) addToken(e->drop());
+                enemies = true;
             }
             if(c->dead()) this->removeToken(c);
         }
@@ -217,3 +218,8 @@ void TokenHandler::handleAI(Player* p)
         e->AI(p);
     }
 };
+
+bool TokenHandler::hasEnemies()
+{
+    return enemies;
+}

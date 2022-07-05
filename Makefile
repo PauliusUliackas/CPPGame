@@ -12,6 +12,9 @@ output: *.o
 ./Game.o: ./Engine/Game.cpp
 	g++ -I src/include -c ./Engine/Game.cpp -o Game.o
 
+./Spawner.o: ./Engine/Spawner.cpp
+	g++ -I src/include -c ./Engine/Spawner.cpp -o Spawner.o
+
 ./Token.o: ./Entities/Token.cpp
 	g++ -I src/include -c ./Entities/Token.cpp -o Token.o
 

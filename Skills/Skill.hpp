@@ -28,7 +28,7 @@ public:
     virtual ~Skill();
     virtual void render(sf::RenderWindow*);
     virtual void update();
-    virtual void activate(Tile& location);
+    virtual void activate(Tile& location, sf::Vector2f from);
     virtual bool canActivate(Tile& tile, Character* c);
     bool equals(Skill*);
     virtual Skill* copy();

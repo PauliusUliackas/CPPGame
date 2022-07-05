@@ -4,7 +4,7 @@
 #include "../Entities/Player.hpp"
 #include "../Map/Map.hpp"
 #include "../UI/UI.hpp"
-#include "../Entities/Swat.hpp"
+#include "Spawner.hpp"
 
 class Game
 {
@@ -24,6 +24,7 @@ class Game
         Map map;
         bool mousePressed;
         UI ui;
+        Spawner spawner;
 
         std::unordered_map<std::string, std::pair<double,double>> playerCooldowns;
         

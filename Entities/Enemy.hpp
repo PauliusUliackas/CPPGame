@@ -12,12 +12,13 @@ protected:
 public:
     Enemy(double, double, double, double);
     virtual ~Enemy();
-    virtual void render(sf::RenderWindow*) = 0;
+    virtual void render(sf::RenderWindow*);
     virtual void update();
     virtual void AI(Player*);
     void clearSkills();
     std::vector<Skill*> getSkills();
 
-    virtual Skill* drop() = 0;
+    virtual Skill* drop();
+    virtual Enemy* spawn(double x, double y);
 
 };

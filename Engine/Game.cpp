@@ -15,9 +15,7 @@ player(500, 500, 50, 50)
     map.load(sf::Vector2f(800, 800));
     mousePressed = false;
 
-    Tile* t = map.getRandomSpawn();
     handler.addToken(&player);
-    handler.addToken(new Swat(t->getHitbox().getX(), t->getHitbox().getY()));
     //handler.addToken(new Swat(500, 750));
     handler.addToken(new Bazooka(100, 200, 0, true));
 
@@ -69,15 +67,16 @@ void Game::run()
                     {
                         playerCooldowns[skill->namae()].first = playerCooldowns[skill->namae()].second;
 
-                        skill = skill->copy();
+                        Skill* other = skill->copy();
                         Tile& tile = map.getSelected();
 
-                        if(skill->canActivate(tile, &player))
+                        if(other->canActivate(tile, &player))
                         {
-                            skill->activate(tile);
+                            other->activate(tile, sf::Vector2f(player.getHB().getX(), player.getHB().getY()));
                             player.useSkill();
-                            handler.addToken(skill);
+                            handler.addToken(other);
                         }
+                        handler.removeToken(skill);
                     }
                 }
             }
@@ -91,6 +90,13 @@ void Game::run()
             handler.render(graphics);
             ui.render(graphics, player);
             handler.update();
+            
+            std::vector<Enemy*> wave = spawner.spawn(&map, handler.hasEnemies());
+            for(Enemy* e: wave)
+            {
+                TokenHandler::addToken(e);
+            }
+            
             DeltaTime::tick();
 
             if(player.dead()) return;

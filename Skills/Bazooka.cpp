@@ -14,7 +14,7 @@ Bazooka::Bazooka(double x, double y, int state, bool immune) : Skill("Bazooka",x
 
 Bazooka::~Bazooka()
 {
-    std::cout << "Deleted" <<std::endl;
+    
 }
 
 void Bazooka::render(sf::RenderWindow* g)
@@ -27,6 +27,8 @@ void Bazooka::render(sf::RenderWindow* g)
         icon.setPosition(hitbox.getX() + ( hitbox.getWidth()) / 2, hitbox.getY() + (hitbox.getHeight()) / 2);
         g->draw(icon);
     }
+    
+    hitbox.render(g, sf::Color::Black);
 };
 
 void Bazooka::update()
@@ -42,9 +44,9 @@ void Bazooka::update()
     }
 }
 
-void Bazooka::activate(Tile& location)
+void Bazooka::activate(Tile& location, sf::Vector2f from)
 {
-    Skill::activate(location);
+    Skill::activate(location, from);
     shoot(from, sf::Vector2f(location.getHitbox().getX(), location.getHitbox().getY()));
 };
 
@@ -64,13 +66,12 @@ void Bazooka::shoot(sf::Vector2f from, sf::Vector2f to)
 
 bool Bazooka::canActivate(Tile& tile, Character* c)
 {
-    from = sf::Vector2f(c->getHB().getX(), c->getHB().getY());
     return Skill::canActivate(tile, c);
 };
 
 Bazooka* Bazooka::copy()
 {
-    return new Bazooka(hitbox.getX(), hitbox.getY(), state, immuneToPlayer);
+    return new Bazooka(0, 0, state, immuneToPlayer);
 };
 
 bool Bazooka::isOver()

@@ -14,6 +14,7 @@ private:
     static std::vector<Token*> add;
     static std::vector<Token*> rubbish;
     static std::vector<Enemy*> AI;
+    bool enemies;
 
 public:
     TokenHandler();
@@ -26,6 +27,7 @@ public:
     static std::vector<Token*> getRubbish();
     static bool intialiseMap(Hitbox);
     static void handleAI(Player*);
+    bool hasEnemies();
     
 private:
     static std::vector<Token*> getCollisions(Character*);

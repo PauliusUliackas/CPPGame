@@ -46,4 +46,17 @@ void Enemy::clearSkills()
 std::vector<Skill*> Enemy::getSkills()
 {
     return skills;
+};
+
+Skill* Enemy::drop()
+{
+    return nullptr;
+};
+
+Enemy* Enemy::spawn(double, double)
+{
+    return nullptr;
 }
+
+void Enemy::render(sf::RenderWindow*){};
+

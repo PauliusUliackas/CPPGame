@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Skills/Firewall.hpp"
+#include "../Skills/Bazooka.hpp"
 #include <iostream>
 #include <vector>
 
