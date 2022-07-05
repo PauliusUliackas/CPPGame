@@ -32,6 +32,7 @@ void Inventory::add(Skill* skill, int x)
 
         if(items[i]->equals(skill))
         {
+            skill->isPicked = true;
             amount[i]+=x;
             return;
         }

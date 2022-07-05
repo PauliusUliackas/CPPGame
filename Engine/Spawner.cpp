@@ -19,7 +19,7 @@ std::vector<Enemy*> Spawner::spawn(Map* map, bool tick)
         descisionTime += DeltaTime::get();
 
     std::vector<Enemy*> out;
-    if(descisionTime > 100)
+    if(descisionTime > 200)
     {
         wave++;
         descisionTime = 0;

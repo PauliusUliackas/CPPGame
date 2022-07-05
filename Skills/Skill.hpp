@@ -24,6 +24,9 @@ protected:
     std::vector<Token*> collisions;
 
 public:
+    bool isPicked;
+
+public:
     Skill(std::string name, double x, double y, int state);
     virtual ~Skill();
     virtual void render(sf::RenderWindow*);

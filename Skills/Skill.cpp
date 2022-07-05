@@ -9,6 +9,7 @@ Skill::Skill(std::string name, double x, double y, int state) : Token(x, y, 20, 
     this->state = STATE::DROP;
     if(state == 1) this->state = STATE::PICKED;
     if(state == 2) this->state = STATE::ACTIVE;
+    isPicked = false;
 };
 
 Skill::~Skill()

@@ -12,6 +12,7 @@ Skill("Firewall", x, y, state)
     anime.load("Fire", "Fire", 25);
     anime.scale("Fire", 2, 2);
     anime.select("Fire");
+    isPicked = false;
 }
 
 Firewall::~Firewall()

@@ -67,7 +67,7 @@ void TokenHandler::update()
         t->update();
         if(Skill* skill = dynamic_cast<Skill*>(t))
         {
-            if(skill->isOver()) this->removeToken(skill);
+            if(skill->isOver() || skill->isPicked) this->removeToken(skill);
             if(skill->namae() == "Bazooka")
             {
                 for(Token* t: tokens)
