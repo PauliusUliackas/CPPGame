@@ -57,9 +57,7 @@ void Player::handleUI(sf::RenderWindow* g)
             greenHealth.setWidth(greenHealth.getWidth()-1);
         UIdelay = 0;
     }
-    std::cout<<"1.2"<<std::endl;
     this->inv.render(g);
-    std::cout<<"1.3"<<std::endl;
     greenHealth.render(g, sf::Color::Green);
 };
 

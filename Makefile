@@ -1,7 +1,7 @@
 all: output run
 
 build:
-	g++ -I src/include -c main.cpp ./DataStructures/*.cpp ./Engine/*cpp ./Entities/*.cpp ./Map/*.cpp ./Skills/*.cpp ./Animation/*.cpp ./UI/*.cpp
+	g++ -I src/include -c main.cpp ./DataStructures/*.cpp ./Engine/*cpp ./Entities/*.cpp ./Map/*.cpp ./Skills/*.cpp ./Animation/*.cpp ./UI/*.cpp ./Items/*.cpp
 
 output: *.o
 	g++ *.o -o game.exe -L src/lib -l sfml-graphics -l sfml-window -l sfml-audio -l sfml-system -l openal32
@@ -62,6 +62,15 @@ output: *.o
 
 ./UI.o: ./UI/UI.cpp
 	g++ -I src/include -c ./UI/UI.cpp -o UI.o
+
+./Database.o: ./Items/Database.cpp
+	g++ -I src/include -c ./Items/Database.cpp -o Database.o
+
+./Drop.o: ./Items/Drop.cpp
+	g++ -I src/include -c ./Items/Drop.cpp -o Drop.o
+
+./Item.o: ./Items/Item.cpp
+	g++ -I src/include -c ./Items/Item.cpp -o Item.o
 
 run:
 	./game.exe
