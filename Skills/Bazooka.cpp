@@ -19,15 +19,12 @@ Bazooka::~Bazooka()
 
 void Bazooka::render(sf::RenderWindow* g)
 {
-
     Skill::render(g);
-
     if(state == ACTIVE)
     {
         icon.setPosition(hitbox.getX() + ( hitbox.getWidth()) / 2, hitbox.getY() + (hitbox.getHeight()) / 2);
         g->draw(icon);
     }
-    
     //hitbox.render(g, sf::Color::Black);
 };
 

@@ -81,16 +81,20 @@ void Game::run()
                 }
             }
 
+            std::cout<<"Start"<<std::endl;
+
             for(auto& pair: playerCooldowns)
             {
                 pair.second.first -= DeltaTime::get();
             }
-
             handler.handleAI(&player);
+            std::cout<<2<<std::endl;
             handler.render(graphics);
+            std::cout<<3<<std::endl;
             ui.render(graphics, player);
+            std::cout<<4<<std::endl;
             handler.update();
-            
+            std::cout<<"END"<<std::endl;
             std::vector<Enemy*> wave = spawner.spawn(&map, handler.hasEnemies());
             for(Enemy* e: wave)
             {

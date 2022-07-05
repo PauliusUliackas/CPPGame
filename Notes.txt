@@ -1,1 +1,2 @@
+Problem after picking an item up
 Program closes itself in wave 4 if using Bazooka.

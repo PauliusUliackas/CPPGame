@@ -7,9 +7,9 @@ greenHealth(10,10,100,40)
     keys = {false, false, false, false};
     speed = 5;
     windowSize = sf::Vector2f(800,800);
-    for(int i = 0 ; i< 10; i ++)
+    for(int i = 0 ; i< 20; i ++)
     {
-        inv.add(new Bazooka(0, 0, 1, true));
+        //inv.add(new Bazooka(0, 0, 1, true));
         inv.add(new Firewall(0, 0, 1));
     }
     anime.load("WalkingR", "Player", 16);
@@ -35,7 +35,6 @@ void Player::render(sf::RenderWindow* g)
     hitbox.render(g);
     handleAnimations();
     anime.play(g, hitbox.getX(), hitbox.getY()-40);
-    handleUI(g);
 };
 
 void Player::handleAnimations()
@@ -58,7 +57,9 @@ void Player::handleUI(sf::RenderWindow* g)
             greenHealth.setWidth(greenHealth.getWidth()-1);
         UIdelay = 0;
     }
+    std::cout<<"1.2"<<std::endl;
     this->inv.render(g);
+    std::cout<<"1.3"<<std::endl;
     greenHealth.render(g, sf::Color::Green);
 };
 

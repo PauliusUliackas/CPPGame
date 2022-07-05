@@ -100,7 +100,8 @@ void Inventory::print()
 {
     for(int i = 0; i< size; i++)
     {
-        std::cout<<items[i]->namae()<<" "<<amount[i]<<std::endl;
+        if(items[i] != NULL)
+            std::cout<<items[i]->namae()<<" "<<amount[i]<<std::endl;
     }
 };
 

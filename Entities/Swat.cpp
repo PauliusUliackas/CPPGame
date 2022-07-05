@@ -73,7 +73,6 @@ void Swat::AI(Player* p)
 
         if(p->getHB().getX() > hitbox.getX()) anime.select("SDR");
         else anime.select("SDL");
-
         Bazooka* bz = new Bazooka(0,0,1, false);
         bz->setActive();
         bz->shoot(sf::Vector2f(hitbox.getX()+hitbox.getWidth(), hitbox.getY()), sf::Vector2f(p->getHB().getX(), p->getHB().getY()));
