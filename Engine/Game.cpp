@@ -121,6 +121,7 @@ void Game::run()
                 currState = MENU;
                 player->setMaxWave(spawner.currWave());
                 menu.kill(player);
+                player = user;
             }
         }
         DeltaTime::tick();

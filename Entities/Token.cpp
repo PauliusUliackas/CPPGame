@@ -86,4 +86,4 @@ Hitbox Token::getHB()
 bool Token::isObj()
 {
     return obj;
-}
+};
