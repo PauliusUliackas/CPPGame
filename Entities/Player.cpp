@@ -1,8 +1,8 @@
 #include "Player.hpp"
 
-Player::Player(double x, double y, double width, double height, std::string name) : Character(x,y,width,height), mousePos(0,0,1,1),
+Player::Player(int health, std::string name) : Character(500,500,50,50), mousePos(0,0,1,1),
 redHealth(10,10,100,40),
-greenHealth(10,10,100,40)
+greenHealth(10,10,health,40)
 {
     keys = {false, false, false, false};
     speed = 5;
@@ -24,6 +24,12 @@ greenHealth(10,10,100,40)
     hitbox.setWidth(35);
     hitbox.setHeight(25);
     UIdelay = 0;
+    this->name = name;
+    this->health = health;
+
+    if(health > 100) redHealth.setWidth(health);
+
+    maxWave = 0;
 };
 
 Player::~Player()
@@ -217,3 +223,19 @@ Inventory& Player::getInv()
 {
     return inv;
 };
+
+std::string Player::getName()
+{
+    return name;
+};
+
+std::string Player::save()
+{
+    return name + " " + std::to_string(health) + " " + std::to_string(maxWave);
+}
+
+void Player::setMaxWave(int i)
+{
+    if(maxWave < i)
+        maxWave = i;
+}

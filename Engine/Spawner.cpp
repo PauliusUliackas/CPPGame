@@ -33,3 +33,8 @@ std::vector<Enemy*> Spawner::spawn(Map* map, bool tick)
     }
     return out;
 }
+
+int Spawner::currWave()
+{
+    return wave;
+}

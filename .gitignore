@@ -5,3 +5,5 @@ src
 *.dll
 *.exe
 *.aseprite
+.vscode
+Notes.txt

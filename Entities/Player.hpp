@@ -17,9 +17,12 @@ private:
     Hitbox greenHealth;
     float UIdelay;
     double speed;
+    std::string name;
+
+    int maxWave;
 
 public:
-    Player(double, double, double, double, std::string name = "");
+    Player(int health, std::string name = "");
     ~Player();
     void render(sf::RenderWindow*);
     void update();
@@ -30,6 +33,14 @@ public:
     void handleCollisions();
     Inventory& getInv();
     void handleUI(sf::RenderWindow*);
+
+    std::string getName();
+
+    Player& operator=(const Player&);
+
+    std::string save();
+
+    void setMaxWave(int);
 
 private:
     void handleAnimations();

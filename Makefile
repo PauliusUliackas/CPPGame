@@ -63,5 +63,11 @@ output: *.o
 ./UI.o: ./UI/UI.cpp
 	g++ -I src/include -c ./UI/UI.cpp -o UI.o
 
+./Button.o: ./UI/Button.cpp
+	g++ -I src/include -c ./UI/Button.cpp -o Button.o
+
+./Menu.o: ./UI/Menu.cpp
+	g++ -I src/include -c ./UI/Menu.cpp -o Menu.o
+
 run:
 	./game.exe

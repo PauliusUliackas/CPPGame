@@ -18,5 +18,6 @@ public:
     Spawner();
     ~Spawner();
     std::vector<Enemy*> spawn(Map* map, bool);
+    int currWave();
     
 };
