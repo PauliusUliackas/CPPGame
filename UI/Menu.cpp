@@ -5,7 +5,8 @@ play(350, 200, "PlayButton"),
 exit(350, 600, "ExitButton"),
 leaderboard(550, 400, "LeaderboardButton"),
 choose(150, 400, "PistolButton"),
-add(350, 500, "AddButton")
+add(350, 500, "AddButton"),
+shop(350, 400, "ShopButton")
 {
     f.loadFromFile("Art/BadComic-Regular.ttf");
     text.setFont(f);
@@ -59,6 +60,11 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
         if(exit.render(g, mouse, isPressed)) return 2;
         if(leaderboard.render(g, mouse, isPressed)) state = 3;
         if(choose.render(g, mouse, isPressed)) state = 1;
+        if(user != nullptr && shop.render(g, mouse, isPressed))
+        {
+            isPressed = false;
+            state = 4;
+        }
     }
     if(state == 1)
     {
@@ -158,6 +164,17 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
             file.close();
         }
 
+    }
+    if(state == 4)
+    {
+        if(exit.render(g, mouse, isPressed))
+        {
+            isPressed = false;
+            state = 0;
+        }
+        text.setString("Money: " + std::to_string(user->money));
+        text.setPosition(700, 20);
+        g->draw(text);
     }
 
     if(user != nullptr)

@@ -12,14 +12,9 @@ testB(110, 230, 100, 40)
     handler.addToken(&testB);
     map.load(sf::Vector2f(800, 800));
     mousePressed = false;
-
-    //handler.addToken(new Bazooka(100, 200, 0, true));
-
-    playerCooldowns["Bazooka"]  = {0, 40};
-    playerCooldowns["Firewall"] = {0,0};
+    Database::loadCooldowns(playerCooldowns);
     user = new Player(1, {}, 0, "Name");
     player = user;
-    
 };
 
 Game::~Game(){};
@@ -50,7 +45,6 @@ void Game::run()
             menu.handleEvents(event);
         }
         graphics->clear();
-
         if(currState == MENU)
         {
             int out = menu.render(graphics, player->mousePosition(), mousePressed);

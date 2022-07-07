@@ -35,16 +35,10 @@ Player::~Player()
 
 void Player::loadInventory(std::vector<std::string> list)
 {
-    std::vector<Skill*> database = {new Firewall(0, 0, 1), new Bazooka(0, 0, 1, true)};
     for(int i = 0; i< list.size(); i+=2)
     {
-        for(Skill* skill: database)
-        {
-            if(skill->namae() == list[i])
-            {
-                inv.add(skill, std::stoi(list[i+1]));
-            }
-        }
+        if(list[i] == "") continue;
+        inv.add(Database::getByName(list[i]), std::stoi(list[i+1]));
     }
 }
 
@@ -246,7 +240,7 @@ std::string Player::save()
 {
     std::string items;
 
-    return name + " " + std::to_string(health) + " " + std::to_string(maxWave) + " " + inv.save() + " " + std::to_string(money);
+    return name + " " + std::to_string(health) + " " + std::to_string(maxWave) + " ," + inv.save() + " " + std::to_string(money);
 }
 
 void Player::setMaxWave(int i)

@@ -57,6 +57,9 @@ output: *.o
 ./Bazooka.o: ./Skills/Bazooka.cpp
 	g++ -I src/include -c ./Skills/Bazooka.cpp -o Bazooka.o
 
+./Database.o: ./Skills/Database.cpp
+	g++ -I src/include -c ./Skills/Database.cpp -o Database.o
+
 ./Animation.o: ./Animation/Animation.cpp
 	g++ -I src/include -c ./Animation/Animation.cpp -o Animation.o
 

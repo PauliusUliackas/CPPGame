@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Character.hpp"
-#include "../Skills/Firewall.hpp"
-#include "../Skills/Bazooka.hpp"
+#include "../Skills/Database.hpp"
 #include "../DataStructures/Inventory.hpp"
 #include "unordered_map"
 
