@@ -8,6 +8,7 @@ std::vector<Enemy*> TokenHandler::AI = {};
 TokenHandler::TokenHandler()
 {
     enemies = false;
+    crypto = 0;
 };
 
 TokenHandler::~TokenHandler()
@@ -52,6 +53,11 @@ void TokenHandler::update()
         if(Character* c = dynamic_cast<Character*>(t))
         {
             move(c);
+            if(Player* p= dynamic_cast<Player*>(c))
+            {
+                p->money += crypto;
+                crypto = 0;
+            }
             if(Enemy* e = dynamic_cast<Enemy*>(c))
             {
                 for(Skill* skill: e->getSkills())
@@ -59,7 +65,11 @@ void TokenHandler::update()
                     if(!contains(tokens, skill)) addToken(skill);
                 }
                 e->clearSkills();
-                if(e->dead()) addToken(e->drop());
+                if(e->dead()) 
+                {
+                    addToken(e->drop());
+                    crypto += e->money();
+                }
                 enemies = true;
             }
             if(c->dead()) this->removeToken(c);

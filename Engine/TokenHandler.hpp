@@ -15,6 +15,7 @@ private:
     static std::vector<Token*> rubbish;
     static std::vector<Enemy*> AI;
     bool enemies;
+    int crypto;
 
 public:
     TokenHandler();

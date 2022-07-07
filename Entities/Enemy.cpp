@@ -6,6 +6,9 @@ Enemy::Enemy(double x, double y, double width, double height) : Character(x, y, 
     speed = 1;
     velocity.x = 0;
     velocity.y = 0;
+
+    maxMoney = 15;
+    minMoney = 5;
 }
 
 Enemy::~Enemy(){}
@@ -56,7 +59,11 @@ Skill* Enemy::drop()
 Enemy* Enemy::spawn(double, double)
 {
     return nullptr;
-}
+};
 
 void Enemy::render(sf::RenderWindow*){};
 
+int Enemy::money()
+{
+    return std::rand()%(maxMoney-minMoney + 1)+minMoney;
+};

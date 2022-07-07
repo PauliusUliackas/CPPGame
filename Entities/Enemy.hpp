@@ -9,6 +9,8 @@ protected:
     double speed;
     std::vector<Skill*> skills;
 
+    int maxMoney, minMoney;
+
 public:
     Enemy(double, double, double, double);
     virtual ~Enemy();
@@ -20,5 +22,7 @@ public:
 
     virtual Skill* drop();
     virtual Enemy* spawn(double x, double y);
+
+    int money();
 
 };

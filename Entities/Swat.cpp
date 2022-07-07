@@ -14,6 +14,9 @@ Swat::Swat(double x, double y) : Enemy(x,y,40,40)
     anime.scale("SDL", 2,2);
     anime.select("SDL");
     anime.flip("SDL", "SDR", true, false);
+
+    minMoney = 5;
+    maxMoney = 21;
 }
 
 Swat::~Swat()

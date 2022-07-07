@@ -2,8 +2,7 @@
 
 Game::Game() :
 test(500, 200, 100, 100),
-testB(110, 230, 100, 40),
-player()
+testB(110, 230, 100, 40)
 {
     HEIGHT = 800;
     WIDTH  = 800;
@@ -11,7 +10,6 @@ player()
     currState = MENU;
     handler.addToken(&test);
     handler.addToken(&testB);
-
     map.load(sf::Vector2f(800, 800));
     mousePressed = false;
 
@@ -19,10 +17,9 @@ player()
 
     playerCooldowns["Bazooka"]  = {0, 40};
     playerCooldowns["Firewall"] = {0,0};
-
-    user = new Player(1, "Name");
+    user = new Player(1, {}, 0, "Name");
     player = user;
-
+    
 };
 
 Game::~Game(){};

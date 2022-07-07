@@ -25,7 +25,7 @@ add(350, 500, "AddButton")
       while(std::getline(file, line))
       {
           std::vector<std::string> list = split(line, ' ');
-          Player* temp = new Player(std::stoi(list[1]), list[0]);
+          Player* temp = new Player(std::stoi(list[1]), split(list[3], ','), std::stoi(list[4]), list[0]);
           temp->setMaxWave(std::stoi(list[2]));
           users.push_back(temp);
       }
@@ -116,11 +116,12 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
             {
                 state = 1;
                 
-                user = new Player(100, name);
+                user = new Player(100, {"Firewall", "10", "Bazooka", "10"}, 0, name);
                 users.push_back(user);
 
                 name = "";
                 isPressed = false;
+                std::cout<<user->save()<<std::endl;
             }
         }
         text.setString("Please type new Character's name:");

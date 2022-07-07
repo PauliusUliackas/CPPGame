@@ -31,4 +31,5 @@ class Inventory
         void print();
         bool handle(Hitbox mouse);
         bool contains(Skill*);
+        std::string save();
 };

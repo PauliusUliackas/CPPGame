@@ -1,17 +1,13 @@
 #include "Player.hpp"
 
-Player::Player(int health, std::string name) : Character(500,500,50,50), mousePos(0,0,1,1),
+Player::Player(int health, std::vector<std::string> data, int money, std::string name) : Character(500,500,50,50), mousePos(0,0,1,1),
 redHealth(10,10,100,40),
 greenHealth(10,10,health,40)
 {
     keys = {false, false, false, false};
     speed = 5;
     windowSize = sf::Vector2f(800,800);
-    for(int i = 0 ; i< 10; i ++)
-    {
-        //inv.add(new Bazooka(0, 0, 1, true));
-        inv.add(new Firewall(0, 0, 1));
-    }
+    loadInventory(data);
     anime.load("WalkingR", "Player", 16);
     anime.select("WalkingL");
     anime.scale("WalkingR", 2, 2);
@@ -30,11 +26,27 @@ greenHealth(10,10,health,40)
     if(health > 100) redHealth.setWidth(health);
 
     maxWave = 0;
+    this->money = money;
 };
 
 Player::~Player()
 {
 };
+
+void Player::loadInventory(std::vector<std::string> list)
+{
+    std::vector<Skill*> database = {new Firewall(0, 0, 1), new Bazooka(0, 0, 1, true)};
+    for(int i = 0; i< list.size(); i+=2)
+    {
+        for(Skill* skill: database)
+        {
+            if(skill->namae() == list[i])
+            {
+                inv.add(skill, std::stoi(list[i+1]));
+            }
+        }
+    }
+}
 
 void Player::render(sf::RenderWindow* g)
 {
@@ -66,6 +78,7 @@ void Player::handleUI(sf::RenderWindow* g)
     }
     this->inv.render(g);
     greenHealth.render(g, sf::Color::Green);
+    
 };
 
 void Player::update()
@@ -231,7 +244,9 @@ std::string Player::getName()
 
 std::string Player::save()
 {
-    return name + " " + std::to_string(health) + " " + std::to_string(maxWave);
+    std::string items;
+
+    return name + " " + std::to_string(health) + " " + std::to_string(maxWave) + " " + inv.save() + " " + std::to_string(money);
 }
 
 void Player::setMaxWave(int i)

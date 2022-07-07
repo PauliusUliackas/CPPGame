@@ -6,7 +6,8 @@
 class UI
 {
 private:
-    /* data */
+    sf::Text text;
+    sf::Font font;
 public:
     UI(/* args */);
     ~UI();

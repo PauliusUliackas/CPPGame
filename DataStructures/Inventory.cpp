@@ -151,4 +151,15 @@ bool Inventory::contains(Skill* s)
         if(items[i] == s) return true;
     }
     return false;
-}
+};
+
+std::string Inventory::save()
+{
+    std::string out = "";
+    for(int i = 0; i < size; i++)
+    {
+        if(items[i] == NULL) continue;
+        out += items[i]->namae() + "," + std::to_string(amount[i]) + ",";
+    }
+    return out;
+};

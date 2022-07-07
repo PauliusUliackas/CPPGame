@@ -22,7 +22,10 @@ private:
     int maxWave;
 
 public:
-    Player(int health, std::string name = "");
+    int money;
+
+public:
+    Player(int health, std::vector<std::string> data, int money, std::string name = "");
     ~Player();
     void render(sf::RenderWindow*);
     void update();
@@ -44,5 +47,6 @@ public:
 
 private:
     void handleAnimations();
+    void loadInventory(std::vector<std::string>);
 
 };
