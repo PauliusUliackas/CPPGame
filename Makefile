@@ -18,6 +18,9 @@ output: *.o
 ./Token.o: ./Entities/Token.cpp
 	g++ -I src/include -c ./Entities/Token.cpp -o Token.o
 
+./Shop.o: ./Engine/Shop.cpp
+	g++ -I src/include -c ./Engine/Shop.cpp -o Shop.o
+
 ./Hitbox.o: ./DataStructures/Hitbox.cpp
 	g++ -I src/include -c ./DataStructures/Hitbox.cpp -o Hitbox.o
 

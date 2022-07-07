@@ -2,6 +2,7 @@
 
 Swat::Swat(double x, double y) : Enemy(x,y,40,40)
 {
+    std::srand(std::time(NULL));
     speed = 5;
     health = 25;
     timer = 30;

@@ -4,6 +4,7 @@ Game::Game() :
 test(500, 200, 100, 100),
 testB(110, 230, 100, 40)
 {
+    std::srand(std::time(NULL));
     HEIGHT = 800;
     WIDTH  = 800;
     this->graphics = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "GAME");
@@ -41,7 +42,6 @@ void Game::run()
             }
             
             player->handleEvents(event, graphics);
-            
             menu.handleEvents(event);
         }
         graphics->clear();

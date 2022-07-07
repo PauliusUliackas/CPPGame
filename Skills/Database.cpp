@@ -29,3 +29,8 @@ Skill* Database::getByName(std::string name)
     std::cout<<"No such Skill: "<<name<<std::endl;
     throw("SIUUU");
 };
+
+Skill* Database::getRandom()
+{
+    return db[std::rand()%(db.size())].first;
+}

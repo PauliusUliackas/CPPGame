@@ -32,4 +32,6 @@ class Inventory
         bool handle(Hitbox mouse);
         bool contains(Skill*);
         std::string save();
+        std::vector<Skill*> getInventory();
+        int getSize() const;
 };

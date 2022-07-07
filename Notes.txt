@@ -1,6 +1,4 @@
 Skins for: Dziugas, Kacper, Manvir, MJ, JV909, Acrylc, IcePik, Yichi, Colin, Vick
 
-Creating skills:
-Add cooldown in game
-Add to databse in player creation
-Shop database
+Make a shop
+Make an Exit point

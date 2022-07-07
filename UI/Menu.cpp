@@ -6,7 +6,7 @@ exit(350, 600, "ExitButton"),
 leaderboard(550, 400, "LeaderboardButton"),
 choose(150, 400, "PistolButton"),
 add(350, 500, "AddButton"),
-shop(350, 400, "ShopButton")
+shopB(350, 400, "ShopButton")
 {
     f.loadFromFile("Art/BadComic-Regular.ttf");
     text.setFont(f);
@@ -32,6 +32,7 @@ shop(350, 400, "ShopButton")
       }
       file.close();
     }
+    shop.reset();
 
 }
 
@@ -60,10 +61,11 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
         if(exit.render(g, mouse, isPressed)) return 2;
         if(leaderboard.render(g, mouse, isPressed)) state = 3;
         if(choose.render(g, mouse, isPressed)) state = 1;
-        if(user != nullptr && shop.render(g, mouse, isPressed))
+        if(user != nullptr && shopB.render(g, mouse, isPressed))
         {
             isPressed = false;
             state = 4;
+            shop.enter(user);
         }
     }
     if(state == 1)
@@ -172,6 +174,10 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
             isPressed = false;
             state = 0;
         }
+        
+        shop.handleEvents(mouse, isPressed);
+        shop.render(g);
+
         text.setString("Money: " + std::to_string(user->money));
         text.setPosition(700, 20);
         g->draw(text);

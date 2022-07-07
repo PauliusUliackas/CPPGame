@@ -1,14 +1,14 @@
 #pragma once
 
 #include "Button.hpp"
-#include "../Entities/Player.hpp"
+#include "../Engine/Shop.hpp"
 #include <fstream>
 #include <map>
 
 class Menu
 {
 private:
-    Button play, exit, choose, leaderboard, add, shop;
+    Button play, exit, choose, leaderboard, add, shopB;
     sf::Text text;
     sf::Font f;
     std::string name;
@@ -16,6 +16,8 @@ private:
 
     unsigned int state;
     unsigned int maxSize;
+
+    Shop shop;
 
     std::vector<Player*> users;
 
@@ -26,7 +28,7 @@ public:
     void handleEvents(sf::Event);
     Player* getUser();
     void save();
-    void kill(Player* player);
+    void kill(Player* player);;
 
 private:
     std::vector<std::string> split(std::string, char by);

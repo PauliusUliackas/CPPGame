@@ -163,3 +163,18 @@ std::string Inventory::save()
     }
     return out;
 };
+
+std::vector<Skill*> Inventory::getInventory()
+{
+    std::vector<Skill*> out;
+    for(Skill* skill: items)
+    {
+        if(skill != NULL) out.push_back(skill);
+    }
+    return out;
+};
+
+int Inventory::getSize() const
+{
+    return size;
+}
