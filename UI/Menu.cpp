@@ -299,3 +299,8 @@ void Menu::kill(Player* player)
     }
     user = nullptr;
 };
+
+void Menu::resetShop()
+{
+    shop.reset();
+}

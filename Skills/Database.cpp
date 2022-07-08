@@ -34,3 +34,52 @@ Skill* Database::getRandom()
 {
     return db[std::rand()%(db.size())].first;
 }
+
+Skill* Database::randomRarity()
+{
+    int percentage = std::rand()%100+1;
+    int rarity;
+
+    if(percentage <= 40)
+    {
+        rarity = 0;
+    }
+    else if(percentage <= 70)
+    {
+        rarity = 1;
+    } 
+    else if(percentage <= 85)
+    {
+        rarity = 2;
+    }
+    else if(percentage <= 93)
+    {
+        rarity = 3;
+    }
+    else if(percentage <= 99)
+    {
+        rarity = 4;
+    }
+    else rarity = 5;
+
+    std::vector<Skill*> pool;
+
+    while(pool.size() == 0)
+    {
+        pool = getRarity(rarity);
+        rarity--;
+    }
+
+    return pool[std::rand()%(pool.size())];
+};
+
+std::vector<Skill*> Database::getRarity(int i)
+{
+    std::vector<Skill*> out;
+
+    for(auto x: db)
+    {
+        if(x.first->getRarity() == i) out.push_back(x.first);
+    }
+    return out;
+}

@@ -28,7 +28,8 @@ public:
     void handleEvents(sf::Event);
     Player* getUser();
     void save();
-    void kill(Player* player);;
+    void kill(Player* player);
+    void resetShop();
 
 private:
     std::vector<std::string> split(std::string, char by);

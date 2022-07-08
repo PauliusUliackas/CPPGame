@@ -57,5 +57,6 @@ public:
     sf::Vector2f normalise(sf::Vector2f vec);
 
     int generatePrice();
+    int getRarity();
     
 };

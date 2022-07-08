@@ -160,4 +160,9 @@ int Skill::generatePrice()
 bool Skill::isActive()
 {
     return state == ACTIVE;
+};
+
+int Skill::getRarity()
+{
+    return rarity;
 }

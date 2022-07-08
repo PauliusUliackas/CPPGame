@@ -29,4 +29,5 @@ class Animation
         void setLength(float);
         void flip(std::string name, std::string newname, bool x, bool y);
         void scale(std::string name, double x, double y);
+        sf::Vector2f getSize();
 };

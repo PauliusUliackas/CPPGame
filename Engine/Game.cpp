@@ -72,6 +72,7 @@ void Game::run()
                     player->setMaxWave(spawner.currWave());
                     player->setX(500);
                     player->setY(500);
+                    if(spawner.currWave() >= 5) menu.resetShop();
                 }
             }
             if(mousePressed)

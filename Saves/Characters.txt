@@ -1,2 +1,1 @@
-Paulius 80 2 ,Firewall,76,Bazooka,6, 59
-JK 80 3 ,Bazooka,1,Firewall,4, 97
+TryHard 60 5 ,Firewall,6,Bazooka,40, 41

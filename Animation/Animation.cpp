@@ -124,3 +124,9 @@ void Animation::scale(std::string name, double x, double y)
     }
 
 }
+
+sf::Vector2f Animation::getSize()
+{
+    sf::FloatRect size = animations[currentAnimation][0].getGlobalBounds();
+    return sf::Vector2f(size.width, size.height);
+}

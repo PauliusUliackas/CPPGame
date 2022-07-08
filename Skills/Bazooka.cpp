@@ -29,7 +29,7 @@ void Bazooka::render(sf::RenderWindow* g)
         g->draw(icon);
     }
     
-    hitbox.render(g, sf::Color::Black);
+    //hitbox.render(g, sf::Color::Black);
 };
 
 void Bazooka::update()

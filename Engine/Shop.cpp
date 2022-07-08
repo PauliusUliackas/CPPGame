@@ -107,7 +107,7 @@ void Shop::reset()
     {
         int rnd = std::rand()%indexes.size();
         int index = indexes[rnd];
-        stock[index] = std::pair<Skill*, int>{Database::getRandom(), std::rand()%10+1};
+        stock[index] = std::pair<Skill*, int>{Database::randomRarity(), std::rand()%10+1};
         price[index] = stock[index].first->generatePrice();
         indexes.erase(indexes.begin() + rnd);
     }

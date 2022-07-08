@@ -7,6 +7,7 @@ Building::Building(double x, double y, std::string name, double width, int scale
     anime.select("main");
     anime.resume();
     solid = true;
+    hitbox.setHeight(anime.getSize().y);
 }
 
 Building::~Building()
@@ -15,6 +16,7 @@ Building::~Building()
 
 void Building::render(sf::RenderWindow* g)
 {
+    hitbox.render(g);
     anime.play(g, hitbox.getX(), hitbox.getY());
 }
 
