@@ -72,7 +72,6 @@ void Player::handleUI(sf::RenderWindow* g)
     }
     this->inv.render(g);
     greenHealth.render(g, sf::Color::Green);
-    
 };
 
 void Player::update()

@@ -29,6 +29,9 @@ public:
     static bool intialiseMap(Hitbox);
     static void handleAI(Player*);
     bool hasEnemies();
+
+    void reset();
+    void deleteToken(Token* t);
     
 private:
     static std::vector<Token*> getCollisions(Character*);

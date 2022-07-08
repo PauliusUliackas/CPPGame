@@ -233,3 +233,31 @@ bool TokenHandler::hasEnemies()
 {
     return enemies;
 }
+
+void TokenHandler::reset()
+{
+    add.clear();
+    tokens.clear();
+};
+
+void TokenHandler::deleteToken(Token* t)
+{
+    for(int i = 0; i < tokens.size(); i++)
+    {
+        if(t == tokens[i])
+        {
+            tokens.erase(tokens.begin() + i);
+            delete tokens[i];
+            return;
+        }
+    }
+    for(int i = 0; i < add.size(); i++)
+    {
+        if(t == add[i])
+        {
+            add.erase(add.begin() + i);
+            delete tokens[i];
+            return;
+        }
+    }
+}

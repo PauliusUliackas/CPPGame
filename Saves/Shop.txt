@@ -1,8 +1,8 @@
-Firewall 8 41
+Firewall 7 41
 
 Firewall 2 49
 
 
-Bazooka 2 2
-Bazooka 9 1
+
+
 

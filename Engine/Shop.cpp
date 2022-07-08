@@ -68,10 +68,12 @@ void Shop::render(sf::RenderWindow* g)
         slot.setPosition(pos.x, pos.y);
         g->draw(slot);
     }
+    bool isEmpty = true;
     for(int i = 0; i < 8; i++)
     {
         if(stock[i].first != NULL)
         {
+            isEmpty = false;
             sf::Sprite icon = stock[i].first->getIcon();
             icon.setPosition(positions[i].x+4, positions[i].y+4);
             g->draw(icon);
@@ -83,6 +85,7 @@ void Shop::render(sf::RenderWindow* g)
             g->draw(text);
         }
     }
+    if(isEmpty) reset();
 };
 
 void Shop::enter(Player* p)

@@ -21,13 +21,12 @@ class Game
         STATE currState;
         Player* player;
         Player* user;
-        Token test;
-        Token testB;
         Map map;
         bool mousePressed;
         UI ui;
         Menu menu;
         Spawner spawner;
+        ExitPoint exitPoint;
 
         std::unordered_map<std::string, std::pair<double,double>> playerCooldowns;
         

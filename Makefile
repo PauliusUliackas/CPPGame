@@ -45,6 +45,12 @@ output: *.o
 ./Swat.o: ./Entities/Swat.cpp
 	g++ -I src/include -c ./Entities/Swat.cpp -o Swat.o
 
+./Building.o: ./Entities/Building.cpp
+	g++ -I src/include -c ./Entities/Building.cpp -o Building.o
+
+./ExitPoint.o: ./Entities/ExitPoint.cpp
+	g++ -I src/include -c ./Entities/ExitPoint.cpp -o ExitPoint.o
+
 ./Map.o: ./Map/Map.cpp
 	g++ -I src/include -c ./Map/Map.cpp -o Map.o
 

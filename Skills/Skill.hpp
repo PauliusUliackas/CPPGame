@@ -37,8 +37,10 @@ public:
     bool equals(Skill*);
     virtual Skill* copy();
     virtual bool isOver();
+    void setOver();
     void pickUp();
     bool canPickUp();
+    bool isActive();
 
     void addCollision(Token*);
 

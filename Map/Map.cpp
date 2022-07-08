@@ -2,7 +2,7 @@
 
 Map::Map()
 {
-
+    buildings.push_back(new Building(200, 300, "Container", 25, 4));
 };
 
 Map::~Map()
@@ -29,6 +29,7 @@ void Map::render(sf::RenderWindow* g, Hitbox mouse)
 void Map::load(sf::Vector2f dimentions)
 {
     srand(time(NULL));
+    for(Building* b: buildings) TokenHandler::addToken(b);
     for(int i = 0; i<dimentions.y; i+= 50)
     {
         for(int j = 0; j < dimentions.x; j+= 50)

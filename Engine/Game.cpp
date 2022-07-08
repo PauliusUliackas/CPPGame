@@ -1,17 +1,13 @@
 #include "Game.hpp"
 
-Game::Game() :
-test(500, 200, 100, 100),
-testB(110, 230, 100, 40)
+Game::Game():
+exitPoint(600, 200, "Exit", 16, 5)
 {
     std::srand(std::time(NULL));
     HEIGHT = 800;
     WIDTH  = 800;
     this->graphics = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "GAME");
     currState = MENU;
-    handler.addToken(&test);
-    handler.addToken(&testB);
-    map.load(sf::Vector2f(800, 800));
     mousePressed = false;
     Database::loadCooldowns(playerCooldowns);
     user = new Player(1, {}, 0, "Name");
@@ -50,10 +46,14 @@ void Game::run()
             int out = menu.render(graphics, player->mousePosition(), mousePressed);
             if(out == 1)
             {
+                handler.reset();
+                spawner = Spawner();
                 player = menu.getUser();
                 currState = GAME;
                 mousePressed = false;
                 handler.addToken(player);
+                handler.addToken(&exitPoint);
+                map.load(sf::Vector2f(800, 800));
             }
             else if( out == 2)
             {
@@ -63,6 +63,17 @@ void Game::run()
         else if(currState == GAME)
         {
             map.render(graphics, player->mousePosition());
+            if(!handler.hasEnemies())
+            {
+                if(exitPoint.handleEvents(graphics, player->mousePosition(), mousePressed, player->getHB()))
+                {
+                    mousePressed = false;
+                    currState = MENU;
+                    player->setMaxWave(spawner.currWave());
+                    player->setX(500);
+                    player->setY(500);
+                }
+            }
             if(mousePressed)
             {
                 Skill* skill = player->getSelected();
@@ -94,13 +105,12 @@ void Game::run()
             {
                 pair.second.first -= DeltaTime::get();
             }
-
             handler.handleAI(player);
             handler.render(graphics);
             ui.render(graphics, *player);
             handler.update();
-            
             std::vector<Enemy*> wave = spawner.spawn(&map, handler.hasEnemies());
+            
             for(Enemy* e: wave)
             {
                 TokenHandler::addToken(e);

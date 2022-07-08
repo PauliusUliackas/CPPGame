@@ -156,3 +156,8 @@ int Skill::generatePrice()
 
     return std::rand()%(max-min)+min;
 }
+
+bool Skill::isActive()
+{
+    return state == ACTIVE;
+}

@@ -1,4 +1,4 @@
 Skins for: Dziugas, Kacper, Manvir, MJ, JV909, Acrylc, IcePik, Yichi, Colin, Vick
 
-Make a shop
-Make an Exit point
+Shop spawns items based on rarity
+Death Bug

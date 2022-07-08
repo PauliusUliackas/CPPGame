@@ -1,2 +1,2 @@
-Paulius 10 0 ,Firewall,3,Bazooka,11, 0
-Test 100 0 ,Firewall,10,Bazooka,10, 0
+Paulius 80 2 ,Firewall,76,Bazooka,6, 59
+JK 80 3 ,Bazooka,1,Firewall,4, 97
