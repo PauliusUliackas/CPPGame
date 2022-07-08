@@ -10,6 +10,7 @@ Bazooka::Bazooka(double x, double y, int state, bool immune) : Skill("Bazooka",x
     collided = false;
     immuneToPlayer = immune;
     distance = 0;
+    rarity = 0;
 }
 
 Bazooka::~Bazooka()

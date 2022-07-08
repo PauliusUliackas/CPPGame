@@ -32,12 +32,12 @@ shopB(350, 400, "ShopButton")
       }
       file.close();
     }
-    shop.reset();
 
 }
 
 Menu::~Menu()
 {
+    shop.save();
 }
 
 

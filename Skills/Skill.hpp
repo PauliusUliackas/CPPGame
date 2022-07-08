@@ -22,6 +22,7 @@ protected:
     std::string name;
     Animation anime;
     std::vector<Token*> collisions;
+    int rarity;
 
 public:
     bool isPicked;
@@ -52,5 +53,7 @@ public:
     sf::Vector2f mult(sf::Vector2f vec1,double vec2);
     sf::Vector2f div(sf::Vector2f vec1,double vec2);
     sf::Vector2f normalise(sf::Vector2f vec);
+
+    int generatePrice();
     
 };

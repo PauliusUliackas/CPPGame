@@ -13,6 +13,7 @@ Skill("Firewall", x, y, state)
     anime.scale("Fire", 2, 2);
     anime.select("Fire");
     isPicked = false;
+    rarity = 3;
 }
 
 Firewall::~Firewall()

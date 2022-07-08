@@ -10,6 +10,8 @@ Skill::Skill(std::string name, double x, double y, int state) : Token(x, y, 20, 
     if(state == 1) this->state = STATE::PICKED;
     if(state == 2) this->state = STATE::ACTIVE;
     isPicked = false;
+    std::srand(std::time(NULL));
+    rarity = 1;
 };
 
 Skill::~Skill()
@@ -116,3 +118,41 @@ void Skill::addCollision(Token* t)
 {
     collisions.push_back(t);
 };
+
+int Skill::generatePrice()
+{
+    int min, max;
+
+    if(rarity == 0)
+    {
+        min = 0;
+        max = 10;
+    }
+    if(rarity == 1)
+    {
+        min = 5;
+        max = 15;
+    }
+    if(rarity == 2)
+    {
+        min = 5;
+        max = 20;
+    }
+    if(rarity == 3)
+    {
+        min = 20;
+        max = 50;
+    }
+    if(rarity == 4)
+    {
+        min = 25;
+        max = 80;
+    }
+    if(rarity == 5)
+    {
+        min = 60;
+        max = 150;
+    }
+
+    return std::rand()%(max-min)+min;
+}
