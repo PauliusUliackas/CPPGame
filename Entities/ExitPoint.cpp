@@ -1,7 +1,7 @@
 #include "ExitPoint.hpp"
 
 ExitPoint::ExitPoint(double x, double y, std::string name, double width, int scale) : Building(x, y, name, width, scale),
-exit(200, 200, "ExitButton"),
+exit(700, 450, "ExitButton"),
 extra(x-10, y-10, (width*scale)+20, (width*scale)+20)
 {
 }

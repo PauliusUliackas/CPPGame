@@ -1,7 +1,8 @@
 #include "Game.hpp"
 
 Game::Game():
-exitPoint(600, 200, "Exit", 16, 5)
+exitPoint(600, 200, "Exit", 16, 5),
+shop(600, 600, "Exit", 16, 5)
 {
     std::srand(std::time(NULL));
     HEIGHT = 800;
@@ -53,7 +54,9 @@ void Game::run()
                 mousePressed = false;
                 handler.addToken(player);
                 handler.addToken(&exitPoint);
+                handler.addToken(&shop);
                 map.load(sf::Vector2f(800, 800));
+                shopReset = false;
             }
             else if( out == 2)
             {
@@ -72,8 +75,13 @@ void Game::run()
                     player->setMaxWave(spawner.currWave());
                     player->setX(500);
                     player->setY(500);
-                    if(spawner.currWave() >= 5) menu.resetShop();
                 }
+            }
+            if(!shopReset && spawner.currWave() >= 5 && shop.handleEvents(graphics, player->mousePosition(), mousePressed, player->getHB()))
+            {
+                mousePressed = false;
+                menu.resetShop();
+                shopReset = true;
             }
             if(mousePressed)
             {

@@ -1,1 +1,1 @@
-TryHard 60 5 ,Firewall,6,Bazooka,40, 41
+TryHard 60 7 ,Firewall,8,Bazooka,41, 4

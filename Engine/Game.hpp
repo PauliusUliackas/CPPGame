@@ -26,9 +26,11 @@ class Game
         UI ui;
         Menu menu;
         Spawner spawner;
-        ExitPoint exitPoint;
+        ExitPoint exitPoint, shop;
 
         std::unordered_map<std::string, std::pair<double,double>> playerCooldowns;
+
+        bool shopReset;
         
     public:
         Game();
