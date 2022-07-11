@@ -66,6 +66,9 @@ output: *.o
 ./Bazooka.o: ./Skills/Bazooka.cpp
 	g++ -I src/include -c ./Skills/Bazooka.cpp -o Bazooka.o
 
+./Healthpot.o: ./Skills/Healthpot.cpp
+	g++ -I src/include -c ./Skills/Healthpot.cpp -o Healthpot.o
+
 ./Database.o: ./Skills/Database.cpp
 	g++ -I src/include -c ./Skills/Database.cpp -o Database.o
 

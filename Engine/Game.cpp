@@ -2,7 +2,7 @@
 
 Game::Game():
 exitPoint(600, 200, "Exit", 16, 5),
-shop(600, 600, "Exit", 16, 5)
+shop(600, 600, "ShopBuilding", 16, 5, "ShopButton")
 {
     std::srand(std::time(NULL));
     HEIGHT = 800;

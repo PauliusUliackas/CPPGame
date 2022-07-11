@@ -2,6 +2,7 @@
 
 #include "Firewall.hpp"
 #include "Bazooka.hpp"
+#include "Healthpot.hpp"
 #include<ctime>
 
 class Database

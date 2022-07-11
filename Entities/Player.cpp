@@ -68,6 +68,8 @@ void Player::handleUI(sf::RenderWindow* g)
     {
         if(health < greenHealth.getWidth())
             greenHealth.setWidth(greenHealth.getWidth()-1);
+        else if(health > greenHealth.getWidth())
+            greenHealth.setWidth(greenHealth.getWidth()+1);
         UIdelay = 0;
     }
     this->inv.render(g);
