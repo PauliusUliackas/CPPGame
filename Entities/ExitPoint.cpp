@@ -18,3 +18,8 @@ bool ExitPoint::handleEvents(sf::RenderWindow* g, Hitbox hb, bool& isPressed, Hi
     }
     return false;
 };
+
+void ExitPoint::setLabel(std::string l)
+{
+    exit.setLabel(l);
+}

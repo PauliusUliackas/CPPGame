@@ -12,12 +12,14 @@ class Inventory
         Skill* items[15];
         int amount[15];
         unsigned int selected;
-        sf::Texture texture, txt;
-        sf::Sprite slot, slt1;
+        sf::Texture texture, txt, backpack;
+        sf::Sprite slot, slt1, bp;
         sf::Font font;
         sf::Text text;
 
         int switchOne;
+
+        bool extraInventory;
 
     public:
         Inventory();

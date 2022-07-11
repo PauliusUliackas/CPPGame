@@ -13,4 +13,5 @@ public:
     ExitPoint(double x, double y, std::string name, double width, int scale = 1, std::string buttonName = "ExitButton");
     ~ExitPoint();
     bool handleEvents(sf::RenderWindow* g, Hitbox hb, bool& isPressed, Hitbox playerHB);
+    void setLabel(std::string);
 };

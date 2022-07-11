@@ -7,12 +7,14 @@ shop(600, 600, "ShopBuilding", 16, 5, "ShopButton")
     std::srand(std::time(NULL));
     HEIGHT = 800;
     WIDTH  = 800;
-    this->graphics = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "GAME");
+    this->graphics = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "One More");
     currState = MENU;
     mousePressed = false;
     Database::loadCooldowns(playerCooldowns);
     user = new Player(1, {}, 0, "Name");
     player = user;
+    exitPoint.setLabel("Leave Match");
+    shop.setLabel("Reset Shop");
 };
 
 Game::~Game(){};

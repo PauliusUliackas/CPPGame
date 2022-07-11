@@ -1,3 +1,3 @@
 TryHard 100 7 ,Firewall,8,Bazooka,30,HealthPot,1, 0
-Test 75 5 ,Bazooka,54,Firewall,1, 1146
-Playtest 71 6 ,Bazooka,37,Firewall,1, 0
+Test 55 5 ,Bazooka,50,Firewall,1, 1160
+PlayTest 70 4 ,Bazooka,14,Firewall,3, 26

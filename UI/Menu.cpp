@@ -32,7 +32,6 @@ shopB(350, 400, "ShopButton")
       }
       file.close();
     }
-
 }
 
 Menu::~Menu()
@@ -43,6 +42,12 @@ Menu::~Menu()
 
 int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
 {
+    play.setLabel("Start");
+    exit.setLabel("Exid");
+    leaderboard.setLabel("Leadeboard");
+    choose.setLabel("Choose Character");
+    add.setLabel("Add new");
+    shopB.setLabel("Shop");
     if(state == 0)
     {
         if(users.size() == 0)
@@ -68,6 +73,7 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
             shop.enter(user);
         }
     }
+    exit.setLabel("Back");
     if(state == 1)
     {
 
@@ -77,6 +83,7 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
             text.setPosition(350, 50+20*i);
             g->draw(text);
             Button del(500, 50+20*i, "DeleteButton", 1);
+            del.setLabel("Delete");
             if(del.render(g, mouse, isPressed))
             {
                 if(user == users[i]) user = nullptr;
@@ -84,6 +91,7 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
                 remove(i);
             }
             Button sel(550, 50+20*i, "Select", 1);
+            sel.setLabel("Select");
             if(sel.render(g, mouse, isPressed))
             {
                 user = users[i];
@@ -174,6 +182,8 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
             isPressed = false;
             state = 0;
         }
+
+        add.setLabel("Buy");
         
         shop.handleEvents(mouse, isPressed);
         shop.render(g);

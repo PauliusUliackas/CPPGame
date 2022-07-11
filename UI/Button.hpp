@@ -9,6 +9,8 @@ private:
     
     sf::Texture txt;
     sf::Sprite sprite;
+    sf::Font font;
+    sf::Text text;
     Hitbox hb;
 
 public:
@@ -16,4 +18,5 @@ public:
     ~Button();
     bool render(sf::RenderWindow*, Hitbox mouse, bool isPressed);
     void scale(double x);
+    void setLabel(std::string);
 };
