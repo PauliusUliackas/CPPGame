@@ -178,6 +178,17 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
         shop.handleEvents(mouse, isPressed);
         shop.render(g);
 
+        text.setString("20$");
+        text.setPosition(300,530);
+        g->draw(text);
+
+        if(add.render(g, mouse, isPressed) && user->money >= 20)
+        {
+            user->dealDamage(-5);
+            user->money -= 20;
+            isPressed = false;
+        }
+
         text.setString("Money: " + std::to_string(user->money));
         text.setPosition(700, 20);
         g->draw(text);

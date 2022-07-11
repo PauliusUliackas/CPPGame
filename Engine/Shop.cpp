@@ -15,8 +15,8 @@ Shop::Shop()
     positions.push_back(sf::Vector2f(320, 300));
     positions.push_back(sf::Vector2f(440, 300));
     positions.push_back(sf::Vector2f(620, 300));
-    positions.push_back(sf::Vector2f(320, 440));
-    positions.push_back(sf::Vector2f(400, 440));
+    positions.push_back(sf::Vector2f(320, 400));
+    positions.push_back(sf::Vector2f(400, 400));
 
     std::srand(std::time(NULL));
 
