@@ -75,6 +75,9 @@ output: *.o
 ./Shield.o: ./Skills/Shield.cpp
 	g++ -I src/include -c ./Skills/Shield.cpp -o Shield.o
 
+./GoldBag.o: ./Skills/GoldBag.cpp
+	g++ -I src/include -c ./Skills/GoldBag.cpp -o GoldBag.o
+
 ./Database.o: ./Skills/Database.cpp
 	g++ -I src/include -c ./Skills/Database.cpp -o Database.o
 

@@ -4,6 +4,7 @@
 #include "Bazooka.hpp"
 #include "Healthpot.hpp"
 #include "Shield.hpp"
+#include "GoldBag.hpp"
 #include<ctime>
 
 class Database

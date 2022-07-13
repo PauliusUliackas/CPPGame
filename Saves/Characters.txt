@@ -1,1 +1,1 @@
-Shop 40 2 ,Firewall,36,Bazooka,84,Shield,474, 3242 *Speed*0.000000*Cooldown*0.000000*Protection*0.000000
+Shop 30 2 ,Firewall,44,Bazooka,111,Shield,474, 3026 *Speed*0.000000*Cooldown*0.000000*Protection*0.000000

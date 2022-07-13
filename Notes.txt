@@ -1,6 +1,5 @@
 Skins for: Dziugas, Kacper, Manvir, MJ, JV909, Acrylc, IcePik, Yichi, Colin, Vick
 
-Labels for items
-Gold stash skill
 Gym - Shop for player stats -> Pricing
 Camera
+Winning Condition

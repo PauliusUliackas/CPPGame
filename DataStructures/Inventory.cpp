@@ -149,6 +149,16 @@ void Inventory::render(sf::RenderWindow* g)
             }
         }
     }
+    else
+    {
+        Skill* item = getSelected();
+        if(item != nullptr)
+        {
+            text.setString(item->namae());
+            text.setPosition(224+slot.getGlobalBounds().width*4, 730);
+            g->draw(text);
+        }
+    }
 
     g->draw(bp);
 

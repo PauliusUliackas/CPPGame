@@ -1,8 +1,8 @@
 
+Bazooka 3 5
+Bazooka 2 5
 
-
-Bazooka 3 1
-Firewall 8 22
-
-Bazooka 3 9
-Bazooka 5 7
+Bazooka 9 8
+Bazooka 8 0
+Shield 3 7
+Bazooka 9 0
