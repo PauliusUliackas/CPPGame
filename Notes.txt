@@ -1,3 +1,6 @@
 Skins for: Dziugas, Kacper, Manvir, MJ, JV909, Acrylc, IcePik, Yichi, Colin, Vick
 
-Shop spawns items based on rarity
+Labels for items
+Gold stash skill
+Gym - Shop for player stats -> Pricing
+Camera

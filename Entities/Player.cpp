@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-Player::Player(int health, std::vector<std::string> data, int money, std::string name) : Character(500,500,50,50), mousePos(0,0,1,1),
+Player::Player(int health, std::vector<std::string> data, std::vector<std::string> stats, int money, std::string name) : Character(500,500,50,50), mousePos(0,0,1,1),
 redHealth(10,10,100,40),
 greenHealth(10,10,health,40)
 {
@@ -27,6 +27,8 @@ greenHealth(10,10,health,40)
 
     maxWave = 0;
     this->money = money;
+
+    this->stats = PlayerStats(stats);
 };
 
 Player::~Player()
@@ -78,6 +80,8 @@ void Player::handleUI(sf::RenderWindow* g)
 
 void Player::update()
 {
+    double speed = this->speed + (this->speed * stats.get("Speed"))/100;
+
     if(keys[0]) velocity.y = -speed;
     else if(keys[2]) velocity.y = speed;
     else velocity.y = 0;
@@ -241,11 +245,33 @@ std::string Player::save()
 {
     std::string items;
 
-    return name + " " + std::to_string(health) + " " + std::to_string(maxWave) + " ," + inv.save() + " " + std::to_string(money);
+    return name + " " + std::to_string(health) + " " + std::to_string(maxWave) + " ," + inv.save() + " " + std::to_string(money) + " " + stats.save();
 }
 
 void Player::setMaxWave(int i)
 {
     if(maxWave < i)
         maxWave = i;
+}
+
+double Player::getStat(std::string name)
+{
+    return stats.get(name);
+}
+
+void Player::dealDamage(int damage)
+{
+    //std::cout<<"Before: "<<health<<std::endl;
+    health -= (damage - (damage * stats.get("Protection"))/150);
+    //std::cout<<"After: "<<health<<std::endl;
+}
+
+PlayerStats& Player::getStats()
+{
+    return stats;
+}
+
+void Player::increaseStat(std::string name, int i)
+{
+    stats.add(name, i);
 }

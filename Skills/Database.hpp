@@ -3,6 +3,7 @@
 #include "Firewall.hpp"
 #include "Bazooka.hpp"
 #include "Healthpot.hpp"
+#include "Shield.hpp"
 #include<ctime>
 
 class Database

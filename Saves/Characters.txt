@@ -1,3 +1,1 @@
-TryHard 100 7 ,Firewall,8,Bazooka,30,HealthPot,1, 0
-Test 55 5 ,Bazooka,50,Firewall,1, 1160
-PlayTest 70 4 ,Bazooka,14,Firewall,3, 26
+Shop 40 2 ,Firewall,36,Bazooka,84,Shield,474, 3242 *Speed*0.000000*Cooldown*0.000000*Protection*0.000000

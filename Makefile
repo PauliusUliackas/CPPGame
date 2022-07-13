@@ -12,6 +12,9 @@ output: *.o
 ./Game.o: ./Engine/Game.cpp
 	g++ -I src/include -c ./Engine/Game.cpp -o Game.o
 
+./PlayerStats.o: ./Engine/PlayerStats.cpp
+	g++ -I src/include -c ./Engine/PlayerStats.cpp -o PlayerStats.o
+
 ./Spawner.o: ./Engine/Spawner.cpp
 	g++ -I src/include -c ./Engine/Spawner.cpp -o Spawner.o
 
@@ -68,6 +71,9 @@ output: *.o
 
 ./Healthpot.o: ./Skills/Healthpot.cpp
 	g++ -I src/include -c ./Skills/Healthpot.cpp -o Healthpot.o
+
+./Shield.o: ./Skills/Shield.cpp
+	g++ -I src/include -c ./Skills/Shield.cpp -o Shield.o
 
 ./Database.o: ./Skills/Database.cpp
 	g++ -I src/include -c ./Skills/Database.cpp -o Database.o

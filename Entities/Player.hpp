@@ -4,6 +4,7 @@
 #include "../Skills/Database.hpp"
 #include "../DataStructures/Inventory.hpp"
 #include "unordered_map"
+#include "../Engine/PlayerStats.hpp"
 
 class Player : public Character
 {
@@ -19,12 +20,13 @@ private:
     std::string name;
 
     int maxWave;
+    PlayerStats stats;
 
 public:
     int money;
 
 public:
-    Player(int health, std::vector<std::string> data, int money, std::string name = "");
+    Player(int health, std::vector<std::string> data, std::vector<std::string> stats, int money, std::string name = "");
     ~Player();
     void render(sf::RenderWindow*);
     void update();
@@ -43,6 +45,11 @@ public:
     std::string save();
 
     void setMaxWave(int);
+    void dealDamage(int);
+    void increaseStat(std::string name, int i = 1);
+
+    double getStat(std::string name);
+    PlayerStats& getStats();
 
 private:
     void handleAnimations();

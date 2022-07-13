@@ -11,7 +11,7 @@ shop(600, 600, "ShopBuilding", 16, 5, "ShopButton")
     currState = MENU;
     mousePressed = false;
     Database::loadCooldowns(playerCooldowns);
-    user = new Player(1, {}, 0, "Name");
+    user = new Player(1, {},{}, 0, "Name");
     player = user;
     exitPoint.setLabel("Leave Match");
     shop.setLabel("Reset Shop");
@@ -94,7 +94,7 @@ void Game::run()
 
                     if(playerCooldowns[skill->namae()].first <= 0)
                     {
-                        playerCooldowns[skill->namae()].first = playerCooldowns[skill->namae()].second;
+                        playerCooldowns[skill->namae()].first = playerCooldowns[skill->namae()].second - (playerCooldowns[skill->namae()].second * player->getStat("Cooldown"))/100;
 
                         Skill* other = skill->copy();
                         Tile& tile = map.getSelected();

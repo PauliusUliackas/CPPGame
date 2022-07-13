@@ -1,7 +1,7 @@
 #include "Database.hpp"
 
 typedef std::pair<Skill*, double> p;
-std::vector<std::pair<Skill*, double>> Database::db = {p{new Firewall(0, 0, 1), 0}, p{new Bazooka(0, 0, 1, true), 40}, p{new Healthpot(0,0,1), 200}};
+std::vector<std::pair<Skill*, double>> Database::db = {p{new Firewall(0, 0, 1), 0}, p{new Bazooka(0, 0, 1, true), 40}, p{new Healthpot(0,0,1), 200}, p{new Shield(0,0,1), 15}};
 
 Database::Database(/* args */)
 {

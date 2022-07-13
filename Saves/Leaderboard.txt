@@ -1,5 +1,5 @@
 Playtest 6
 Test 5
-Paulius 4
-PlayTest 3
+Test 4
+Player2 3
 Test 2

@@ -6,7 +6,8 @@ exit(350, 600, "ExitButton"),
 leaderboard(550, 400, "LeaderboardButton"),
 choose(150, 400, "PistolButton"),
 add(350, 500, "AddButton"),
-shopB(350, 400, "ShopButton")
+shopB(350, 400, "ShopButton"),
+gym(550, 200, "GymButton")
 {
     f.loadFromFile("Art/BadComic-Regular.ttf");
     text.setFont(f);
@@ -26,7 +27,7 @@ shopB(350, 400, "ShopButton")
       while(std::getline(file, line))
       {
           std::vector<std::string> list = split(line, ' ');
-          Player* temp = new Player(std::stoi(list[1]), split(list[3], ','), std::stoi(list[4]), list[0]);
+          Player* temp = new Player(std::stoi(list[1]), split(list[3], ','), split(list[5], '*'), std::stoi(list[4]), list[0]);
           temp->setMaxWave(std::stoi(list[2]));
           users.push_back(temp);
       }
@@ -48,6 +49,7 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
     choose.setLabel("Choose Character");
     add.setLabel("Add new");
     shopB.setLabel("Shop");
+    gym.setLabel("Gym");
     if(state == 0)
     {
         if(users.size() == 0)
@@ -71,6 +73,11 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
             isPressed = false;
             state = 4;
             shop.enter(user);
+        }
+        if(user != nullptr && gym.render(g, mouse, isPressed))
+        {
+            isPressed = false;
+            state = 5;
         }
     }
     exit.setLabel("Back");
@@ -132,7 +139,7 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
             {
                 state = 1;
                 
-                user = new Player(100, {"Firewall", "10", "Bazooka", "10"}, 0, name);
+                user = new Player(100, {"Firewall", "10", "Bazooka", "10"}, {}, 0, name);
                 users.push_back(user);
 
                 name = "";
@@ -202,6 +209,39 @@ int Menu::render(sf::RenderWindow* g, Hitbox mouse, bool& isPressed)
         text.setString("Money: " + std::to_string(user->money));
         text.setPosition(700, 20);
         g->draw(text);
+    }
+    if(state == 5)
+    {
+        PlayerStats ps = user->getStats();
+        int i = 0;
+        for(auto pair: ps.copy())
+        {
+            text.setString(pair.first);
+            text.setPosition(350, 50+20*i);
+            g->draw(text);
+            text.setString(std::to_string((int)pair.second));
+            text.setPosition(456, 50+20*i);
+            g->draw(text);
+            Button del(500, 50+20*i, "Select", 1);
+            del.setLabel("Train");
+            if(del.render(g, mouse, isPressed) && user->money >= 60)
+            {
+                user->money -= 60;
+                user->increaseStat(pair.first);
+                isPressed = false;
+            }
+            i++;
+        }
+
+        text.setString("Money: " + std::to_string(user->money));
+        text.setPosition(700, 20);
+        g->draw(text);
+
+        if(exit.render(g, mouse, isPressed))
+        {
+            isPressed = false;
+            state = 0;
+        }
     }
 
     if(user != nullptr)

@@ -8,7 +8,7 @@
 class Menu
 {
 private:
-    Button play, exit, choose, leaderboard, add, shopB;
+    Button play, exit, choose, leaderboard, add, shopB, gym;
     sf::Text text;
     sf::Font f;
     std::string name;
